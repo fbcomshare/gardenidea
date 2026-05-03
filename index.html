@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="p:domain_verify" content="e519e9edebe29ac84008306fda157315"/>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z94RGGLMY1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z94RGGLMY1');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Garden Bloom — Lawn care, garden decor, floral crafts, wedding bouquets, wreaths, and home decor inspiration. Free guides + beginner tutorials.">
+<title>Garden Bloom | Garden, Floral & Home Decor Ideas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green-dark:#1a3a1a; --green-mid:#2d6a2d; --green-light:#4a9e4a;
+  --green-pale:#e8f5e8; --gold:#c8a44a; --gold-light:#f5e9c8;
+  --rose:#c45c7a; --rose-pale:#fce8ef;
+  --cream:#faf8f0; --white:#ffffff;
+  --text:#1c1c1c; --text-mid:#4a4a4a; --text-light:#767676;
+  --border:#e0ddd0;
+  --font-h:'Playfair Display',Georgia,serif;
+  --font-b:'DM Sans',system-ui,sans-serif;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-b);background:var(--cream);color:var(--text);line-height:1.75;}
+
+/* AD SLOTS */
+.ad{background:#f5f5f5;border:1px dashed #ccc;text-align:center;padding:10px;font-size:10px;color:#aaa;letter-spacing:.5px;border-radius:4px;}
+.ad-leader{min-height:90px;margin:0;}
+.ad-rect{min-height:250px;max-width:336px;margin:0 auto;}
+.ad-inline{min-height:90px;margin:1.5rem 0;}
+
+/* HEADER */
+header{background:var(--green-dark);color:#fff;position:sticky;top:0;z-index:200;border-bottom:3px solid var(--gold);}
+.hdr{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:62px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:var(--font-h);font-size:1.55rem;font-weight:700;color:#fff;text-decoration:none;}
+.logo em{color:var(--gold);font-style:normal;}
+nav{display:flex;gap:1.4rem;flex-wrap:wrap;}
+nav a{color:rgba(255,255,255,.82);text-decoration:none;font-size:.83rem;font-weight:500;transition:color .2s;cursor:pointer;}
+nav a:hover,nav a.active{color:var(--gold);}
+.hbtn{display:none;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;}
+
+/* AD BAR */
+.adbar{background:#fff;border-bottom:1px solid var(--border);padding:6px 1.5rem;}
+.adbar-in{max-width:1200px;margin:0 auto;}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,#0f2b0f 0%,#1a3a1a 40%,#2d5a2d 100%);color:#fff;padding:5rem 1.5rem 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(200,164,74,.08) 0%,transparent 70%);}
+.hero-in{position:relative;z-index:1;max-width:680px;margin:0 auto;}
+.pill{display:inline-block;background:rgba(200,164,74,.2);border:1px solid rgba(200,164,74,.4);color:var(--gold);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;padding:5px 16px;border-radius:30px;margin-bottom:1.2rem;}
+.hero h1{font-family:var(--font-h);font-size:clamp(2rem,5vw,3rem);line-height:1.18;margin-bottom:1rem;}
+.hero h1 em{color:var(--gold);font-style:italic;}
+.hero p{font-size:1.05rem;opacity:.82;max-width:500px;margin:0 auto 2rem;}
+.hero-btns{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+.btn-primary{background:var(--gold);color:var(--green-dark);text-decoration:none;padding:.75rem 1.6rem;border-radius:30px;font-weight:700;font-size:.9rem;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(200,164,74,.35);}
+.btn-ghost{background:transparent;color:#fff;text-decoration:none;padding:.75rem 1.6rem;border-radius:30px;font-weight:500;font-size:.9rem;border:1px solid rgba(255,255,255,.35);transition:border-color .2s;cursor:pointer;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.7);}
+.hero-stats{display:flex;gap:2rem;justify-content:center;margin-top:2.5rem;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-n{font-family:var(--font-h);font-size:1.6rem;font-weight:700;color:var(--gold);}
+.stat-l{font-size:.75rem;opacity:.65;letter-spacing:.5px;}
+
+/* CATEGORIES */
+.sec{padding:3.5rem 1.5rem;}
+.sec-in{max-width:1200px;margin:0 auto;}
+.sec-hd{text-align:center;margin-bottom:2.5rem;}
+.sec-label{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--green-mid);font-weight:600;margin-bottom:.5rem;}
+.sec-title{font-family:var(--font-h);font-size:clamp(1.4rem,3vw,2.1rem);color:var(--green-dark);margin-bottom:.4rem;}
+.sec-sub{color:var(--text-mid);font-size:.92rem;}
+
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+.cat{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;text-decoration:none;color:inherit;transition:all .2s;display:block;cursor:pointer;}
+.cat:hover,.cat.active{transform:translateY(-3px);box-shadow:0 8px 24px rgba(26,58,26,.1);border-color:var(--green-light);background:var(--green-pale);}
+.cat-icon{font-size:1.9rem;margin-bottom:.55rem;display:block;}
+.cat-name{font-weight:600;font-size:.85rem;color:var(--green-dark);}
+.cat-n{font-size:.72rem;color:var(--text-light);margin-top:2px;}
+
+/* MAIN LAYOUT */
+.main-layout{display:grid;grid-template-columns:1fr 300px;gap:2.5rem;max-width:1200px;margin:0 auto;padding:3rem 1.5rem;}
+
+/* CATEGORY FILTER TABS */
+.filter-bar{background:var(--white);border-bottom:2px solid var(--border);padding:.75rem 1.5rem;position:sticky;top:65px;z-index:100;}
+.filter-bar-in{max-width:1200px;margin:0 auto;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;}
+.filter-label{font-size:.72rem;font-weight:600;color:var(--text-light);letter-spacing:1px;text-transform:uppercase;margin-right:.5rem;white-space:nowrap;}
+.filter-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:.35rem .9rem;font-size:.8rem;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s;font-family:var(--font-b);}
+.filter-btn:hover{border-color:var(--green-light);color:var(--green-dark);}
+.filter-btn.active{background:var(--green-dark);color:#fff;border-color:var(--green-dark);}
+
+/* ARTICLE CARDS */
+.arts{display:flex;flex-direction:column;gap:1.5rem;}
+.art{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:200px 1fr;transition:box-shadow .2s,opacity .3s,transform .3s;}
+.art:hover{box-shadow:0 6px 22px rgba(26,58,26,.09);}
+.art.hidden{display:none;}
+.art-img{display:flex;align-items:center;justify-content:center;font-size:3.5rem;min-height:155px;position:relative;}
+.art-body{padding:1.2rem;}
+.art-meta{display:flex;gap:.6rem;align-items:center;margin-bottom:.5rem;}
+.art-tag{background:var(--green-pale);color:var(--green-mid);font-size:.65rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 10px;border-radius:12px;}
+.art-time{font-size:.72rem;color:var(--text-light);}
+.art-h{font-family:var(--font-h);font-size:1.05rem;color:var(--green-dark);margin-bottom:.45rem;line-height:1.35;}
+.art-p{font-size:.84rem;color:var(--text-mid);line-height:1.65;}
+.art-link{display:inline-flex;align-items:center;gap:4px;margin-top:.7rem;font-size:.8rem;font-weight:600;color:var(--green-mid);text-decoration:none;}
+.art-link:hover{gap:8px;}
+
+/* SECTION HEADING WITH ACTIVE CATEGORY */
+.arts-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.75rem;flex-wrap:wrap;gap:.5rem;}
+.arts-header .sec-title{font-size:1.75rem;margin:0;}
+.category-badge{background:var(--green-pale);color:var(--green-dark);font-size:.72rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;border:1px solid var(--green-light);}
+
+/* NO RESULTS */
+.no-results{text-align:center;padding:3rem 1rem;color:var(--text-light);}
+.no-results-icon{font-size:3rem;margin-bottom:.75rem;}
+.no-results h3{font-family:var(--font-h);color:var(--green-dark);margin-bottom:.5rem;}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:1.4rem;}
+.sw{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem;}
+.sw-title{font-family:var(--font-h);font-size:.95rem;color:var(--green-dark);margin-bottom:.9rem;padding-bottom:.5rem;border-bottom:2px solid var(--green-pale);}
+
+/* SIDEBAR CATEGORY LINKS */
+.cat-links{list-style:none;}
+.cat-links li{padding:.4rem 0;border-bottom:1px solid #f3f3f0;}
+.cat-links li:last-child{border:none;}
+.cat-links a{color:var(--text);text-decoration:none;font-size:.84rem;display:flex;align-items:center;gap:.5rem;cursor:pointer;transition:color .2s;}
+.cat-links a:hover,.cat-links a.active{color:var(--green-mid);}
+.cat-links .count{margin-left:auto;font-size:.7rem;color:var(--text-light);background:#f3f3f0;padding:1px 7px;border-radius:10px;}
+
+/* FREE GUIDES SIDEBAR */
+.sw-guides{background:linear-gradient(135deg,#e8f5e8,#f5e9c8);}
+.sw-guides .sw-title{color:var(--green-dark);}
+.guide-item{display:flex;align-items:center;gap:9px;padding:.5rem 0;border-bottom:1px solid rgba(0,0,0,.06);}
+.guide-item:last-child{border:none;}
+.guide-icon{font-size:1.3rem;}
+.guide-info .name{font-size:.78rem;font-weight:600;line-height:1.3;color:var(--green-dark);}
+.guide-info .tag{font-size:.68rem;color:var(--green-mid);font-weight:600;}
+.guide-btn{background:var(--green-dark);color:#fff;text-decoration:none;padding:3px 9px;border-radius:8px;font-size:.68rem;font-weight:700;white-space:nowrap;}
+.guide-btn:hover{background:var(--green-mid);}
+
+/* NEWSLETTER */
+.nl{background:var(--green-dark);color:#fff;padding:3rem 1.5rem;text-align:center;}
+.nl-in{max-width:520px;margin:0 auto;}
+.nl h2{font-family:var(--font-h);font-size:1.75rem;margin-bottom:.5rem;}
+.nl p{opacity:.78;margin-bottom:1.5rem;font-size:.92rem;}
+.nl-form{display:flex;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+.nl-form input{flex:1;padding:.85rem 1.2rem;border:none;font-family:var(--font-b);font-size:.9rem;outline:none;}
+.nl-form button{background:var(--gold);color:var(--green-dark);border:none;padding:.85rem 1.3rem;font-weight:700;cursor:pointer;font-family:var(--font-b);}
+.nl-disc{font-size:.72rem;opacity:.5;margin-top:.75rem;}
+
+/* FOOTER */
+footer{background:#0d1a0d;color:rgba(255,255,255,.65);}
+.ft-main{max-width:1200px;margin:0 auto;padding:3rem 1.5rem 2rem;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;}
+.ft-logo{font-family:var(--font-h);font-size:1.35rem;font-weight:700;color:#fff;text-decoration:none;display:block;margin-bottom:.65rem;}
+.ft-logo em{color:var(--gold);font-style:normal;}
+.ft-brand p{font-size:.83rem;line-height:1.7;opacity:.65;}
+.ft-col h4{color:#fff;font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:.9rem;}
+.ft-col a{display:block;color:rgba(255,255,255,.55);text-decoration:none;font-size:.82rem;margin-bottom:.45rem;transition:color .2s;cursor:pointer;}
+.ft-col a:hover{color:var(--gold);}
+.ft-bot{border-top:1px solid rgba(255,255,255,.08);max-width:1200px;margin:0 auto;padding:1.2rem 1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;flex-wrap:wrap;gap:.5rem;}
+.ft-bot-links{display:flex;gap:1.25rem;}
+.ft-bot-links a{color:rgba(255,255,255,.45);text-decoration:none;}
+.ft-bot-links a:hover{color:var(--gold);}
+.disc-bar{background:#0a140a;max-width:1200px;margin:0 auto;padding:.9rem 1.5rem;font-size:.72rem;color:rgba(255,255,255,.35);border-top:1px solid rgba(255,255,255,.05);}
+
+/* RESPONSIVE */
+@media(max-width:960px){.main-layout{grid-template-columns:1fr;}.sidebar{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}.ft-main{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){nav{display:none;}.hbtn{display:block;}.art{grid-template-columns:1fr;}.art-img{min-height:120px;}.ft-main{grid-template-columns:1fr;}.ft-bot{flex-direction:column;text-align:center;}.hero-stats{gap:1.25rem;}.nl-form{flex-direction:column;}.cat-grid{grid-template-columns:repeat(3,1fr);}.filter-bar{top:62px;}}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <a href="index.html" class="logo">Garden<em>Bloom</em></a>
+    <nav>
+      <a href="#articles" onclick="filterArticles('lawn-garden')" data-cat="lawn-garden">Lawn & Garden</a>
+      <a href="#articles" onclick="filterArticles('floral-crafts')" data-cat="floral-crafts">Floral Crafts</a>
+      <a href="#articles" onclick="filterArticles('home-decor')" data-cat="home-decor">Home Decor</a>
+      <a href="#articles" onclick="filterArticles('wedding-decor')" data-cat="wedding-decor">Wedding Decor</a>
+      <a href="#articles" onclick="filterArticles('free-guides')" data-cat="free-guides">Free Guides</a>
+    </nav>
+    <button class="hbtn">&#9776;</button>
+  </div>
+</header>
+
+<!-- TOP AD -->
+<div class="adbar"><div class="adbar-in"><div class="ad ad-leader"><!-- ezoic-pub-ad-placeholder-101 --> Advertisement</div></div></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-in">
+    <span class="pill">🌿 Garden · Floral · Home Decor</span>
+    <h1>Grow Beautiful Spaces.<br><em>Inside & Out.</em></h1>
+    <p>From lush backyard gardens to stunning ribbon rose bouquets — discover ideas, guides, and tutorials that inspire every season.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="filterArticles('free-guides');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">🌿 Browse Free Guides</button>
+      <button class="btn-ghost" onclick="document.getElementById('articles').scrollIntoView({behavior:'smooth'})">Explore All Articles</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">50K+</div><div class="stat-l">Monthly Readers</div></div>
+      <div class="stat"><div class="stat-n">200+</div><div class="stat-l">Free Articles</div></div>
+      <div class="stat"><div class="stat-n">5</div><div class="stat-l">Topic Categories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="sec" style="background:var(--white);">
+  <div class="sec-in">
+    <div class="sec-hd">
+      <p class="sec-label">Explore by Topic</p>
+      <h2 class="sec-title">What Are You Growing Today?</h2>
+    </div>
+    <div class="cat-grid">
+      <a class="cat" onclick="filterArticles('all');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <span class="cat-icon">✨</span><div class="cat-name">All Articles</div><div class="cat-n">All topics</div>
+      </a>
+      <a class="cat" onclick="filterArticles('lawn-garden');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <span class="cat-icon">🌿</span><div class="cat-name">Lawn & Garden</div><div class="cat-n">12 articles</div>
+      </a>
+      <a class="cat" onclick="filterArticles('floral-crafts');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <span class="cat-icon">🌸</span><div class="cat-name">Floral Crafts</div><div class="cat-n">8 articles</div>
+      </a>
+      <a class="cat" onclick="filterArticles('home-decor');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <span class="cat-icon">🏡</span><div class="cat-name">Home Decor</div><div class="cat-n">9 articles</div>
+      </a>
+      <a class="cat" onclick="filterArticles('wedding-decor');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <span class="cat-icon">💍</span><div class="cat-name">Wedding Decor</div><div class="cat-n">7 articles</div>
+      </a>
+      <a class="cat" onclick="filterArticles('free-guides');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <span class="cat-icon">📖</span><div class="cat-name">Free Guides</div><div class="cat-n">5 guides</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY FILTER BAR -->
+<div class="filter-bar" id="filter-bar">
+  <div class="filter-bar-in">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-cat="all" onclick="filterArticles('all')">All</button>
+    <button class="filter-btn" data-cat="lawn-garden" onclick="filterArticles('lawn-garden')">🌿 Lawn & Garden</button>
+    <button class="filter-btn" data-cat="floral-crafts" onclick="filterArticles('floral-crafts')">🌸 Floral Crafts</button>
+    <button class="filter-btn" data-cat="home-decor" onclick="filterArticles('home-decor')">🏡 Home Decor</button>
+    <button class="filter-btn" data-cat="wedding-decor" onclick="filterArticles('wedding-decor')">💍 Wedding Decor</button>
+    <button class="filter-btn" data-cat="free-guides" onclick="filterArticles('free-guides')">📖 Free Guides</button>
+  </div>
+</div>
+
+<!-- ARTICLES + SIDEBAR -->
+<section style="background:var(--white);padding:0;" id="articles">
+  <div class="main-layout">
+
+    <div>
+      <div class="arts-header">
+        <div>
+          <p class="sec-label">Free Inspiration & Ideas</p>
+          <h2 class="sec-title" id="section-title">All Articles</h2>
+        </div>
+        <span class="category-badge" id="category-badge" style="display:none"></span>
+      </div>
+
+      <div class="arts" id="articles-list">
+
+        <!-- Lawn & Garden -->
+        <article class="art" data-category="lawn-garden">
+          <div class="art-img" style="background:#e8f5e8;">🌳</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Lawn & Garden</span><span class="art-time">8 min</span></div>
+            <h2 class="art-h">50 Backyard Garden Ideas on a Budget That Look Expensive</h2>
+            <p class="art-p">Transform your backyard into a lush, beautiful retreat without spending a fortune. From raised beds to string lights — 50 budget ideas that truly deliver.</p>
+            <a href="article-backyard-ideas.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <div class="ad ad-inline"><!-- ezoic-pub-ad-placeholder-102 --> Advertisement</div>
+
+        <article class="art" data-category="lawn-garden">
+          <div class="art-img" style="background:#e8fff0;">🌼</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Lawn & Garden</span><span class="art-time">8 min</span></div>
+            <h2 class="art-h">How to Design a Cottage Garden That Blooms All Season</h2>
+            <p class="art-p">A cottage garden feels wild but is secretly planned. Discover the right plant combinations, layout secrets, and easy maintenance tips for a breathtaking cottage border.</p>
+            <a href="article-cottage-garden.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <article class="art" data-category="lawn-garden">
+          <div class="art-img" style="background:#e8f5e8;">🛖</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Lawn & Garden</span><span class="art-time">7 min</span></div>
+            <h2 class="art-h">Cozy Outdoor Living Space Ideas You'll Never Want to Leave</h2>
+            <p class="art-p">Create an outdoor room as comfortable and stylish as your indoor living space. Fire pits, weatherproof sofas, rugs, and the perfect layout for entertaining.</p>
+            <a href="article-outdoor-living.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <!-- Floral Crafts -->
+        <article class="art" data-category="floral-crafts">
+          <div class="art-img" style="background:#fce8ef;">🌹</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Floral Crafts</span><span class="art-time">7 min</span></div>
+            <h2 class="art-h">How to Make Ribbon Roses at Home: A Complete Beginner's Guide</h2>
+            <p class="art-p">Ribbon roses are easier than you think. Discover the materials, techniques, and finishing touches to make bouquets that look professionally made.</p>
+            <a href="article-ribbon-roses.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <div class="ad ad-inline"><!-- ezoic-pub-ad-placeholder-103 --> Advertisement</div>
+
+        <article class="art" data-category="floral-crafts">
+          <div class="art-img" style="background:#e8f0ff;">🎄</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Floral Crafts</span><span class="art-time">6 min</span></div>
+            <h2 class="art-h">Seasonal Wreath Ideas for Every Month of the Year</h2>
+            <p class="art-p">A wreath for every season makes your home feel alive and festive year-round. Discover the best designs, materials, and colour palettes for each season.</p>
+            <a href="article-seasonal-wreaths.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <article class="art" data-category="floral-crafts">
+          <div class="art-img" style="background:#fff0f8;">🌷</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Floral Crafts</span><span class="art-time">6 min</span></div>
+            <h2 class="art-h">Spring Tablescape Ideas That Will Wow Your Guests</h2>
+            <p class="art-p">Set the most beautiful spring table with these fresh floral centrepiece ideas, pastel colour palettes, and easy arrangement tips you can recreate today.</p>
+            <a href="article-spring-tablescape.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <!-- Home Decor -->
+        <article class="art" data-category="home-decor">
+          <div class="art-img" style="background:#fff3e8;">🏡</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Home Decor</span><span class="art-time">7 min</span></div>
+            <h2 class="art-h">Farmhouse Home Decor Ideas on Any Budget</h2>
+            <p class="art-p">The farmhouse aesthetic never goes out of style. Warm textures, natural wood, shiplap, and soft florals — here's how to get the look for less.</p>
+            <a href="article-farmhouse-decor.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <div class="ad ad-inline"><!-- ezoic-pub-ad-placeholder-104 --> Advertisement</div>
+
+        <article class="art" data-category="home-decor">
+          <div class="art-img" style="background:#fffbe8;">💡</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Home Decor</span><span class="art-time">6 min</span></div>
+            <h2 class="art-h">Outdoor String Light Ideas That Create Instant Magic</h2>
+            <p class="art-p">Nothing transforms a garden or patio like the warm glow of string lights at dusk. Discover creative ways to hang, style, and power them — solar options included.</p>
+            <a href="article-string-lights.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <article class="art" data-category="home-decor">
+          <div class="art-img" style="background:#f0e8ff;">🎁</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Home Decor</span><span class="art-time">5 min</span></div>
+            <h2 class="art-h">Beautiful Gift Wrapping Ideas Using Ribbon & Florals</h2>
+            <p class="art-p">Elevate your gift-giving with ribbon bows, floral accents, and creative wrapping techniques. These ideas make even a simple gift look like it came from a boutique.</p>
+            <a href="article-gift-wrapping.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <!-- Wedding Decor -->
+        <article class="art" data-category="wedding-decor">
+          <div class="art-img" style="background:#fff8e8;">💍</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Wedding Decor</span><span class="art-time">9 min</span></div>
+            <h2 class="art-h">DIY Wedding Bouquet Ideas That Save You $500 or More</h2>
+            <p class="art-p">Florist prices have never been higher. Learn how brides are creating their own stunning bouquets for a fraction of the cost — and loving the result.</p>
+            <a href="article-wedding-bouquet.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <div class="ad ad-inline"><!-- ezoic-pub-ad-placeholder-105 --> Advertisement</div>
+
+        <article class="art" data-category="wedding-decor">
+          <div class="art-img" style="background:#fce8ef;">💐</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Wedding Decor</span><span class="art-time">8 min</span></div>
+            <h2 class="art-h">Stunning Wedding Table Centrepiece Ideas for Every Style</h2>
+            <p class="art-p">From rustic wildflower arrangements to elegant tall vases, find the perfect centrepiece style for your wedding reception tables — at every budget.</p>
+            <a href="article-wedding-centrepieces.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <article class="art" data-category="wedding-decor">
+          <div class="art-img" style="background:#fff8f0;">🕯️</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Wedding Decor</span><span class="art-time">7 min</span></div>
+            <h2 class="art-h">How to Create a Beautiful Wedding Arch with Greenery & Blooms</h2>
+            <p class="art-p">A flower arch is the ultimate wedding backdrop. Discover how to build, style, and budget for a stunning ceremony arch that photographs beautifully.</p>
+            <a href="article-wedding-arch.html" class="art-link">Read Full Article →</a>
+          </div>
+        </article>
+
+        <!-- Free Guides -->
+        <article class="art" data-category="free-guides">
+          <div class="art-img" style="background:#e8f5e8;">📗</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Free Guide</span><span class="art-time">Free Download</span></div>
+            <h2 class="art-h">Beginner's Complete Guide to Ribbon Rose Crafting</h2>
+            <p class="art-p">Everything you need to get started with ribbon roses — tools, materials, step-by-step technique, and tips for making your first perfect rose. 100% free guide.</p>
+            <a href="guide-ribbon-roses-free.html" class="art-link">Download Free Guide →</a>
+          </div>
+        </article>
+
+        <article class="art" data-category="free-guides">
+          <div class="art-img" style="background:#e8f0ff;">📘</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Free Guide</span><span class="art-time">Free Download</span></div>
+            <h2 class="art-h">Seasonal Garden Planning Guide: Year-Round Bloom Calendar</h2>
+            <p class="art-p">Plan your garden so something is always blooming. This free guide covers the best flowers and plants for each season, with planting times and care tips.</p>
+            <a href="guide-garden-planning-free.html" class="art-link">Download Free Guide →</a>
+          </div>
+        </article>
+
+        <article class="art" data-category="free-guides">
+          <div class="art-img" style="background:#fff3e8;">📙</div>
+          <div class="art-body">
+            <div class="art-meta"><span class="art-tag">Free Guide</span><span class="art-time">Free Download</span></div>
+            <h2 class="art-h">DIY Home Decor on a Budget: 20 Easy Weekend Projects</h2>
+            <p class="art-p">Transform your home without spending a fortune. This free guide includes 20 beautiful, achievable home decor projects with material lists and step-by-step instructions.</p>
+            <a href="guide-home-decor-free.html" class="art-link">Download Free Guide →</a>
+          </div>
+        </article>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="no-results" style="display:none;">
+          <div class="no-results-icon">🌱</div>
+          <h3>No articles found</h3>
+          <p>Try selecting a different category above.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="ad ad-rect"><!-- ezoic-pub-ad-placeholder-106 --> Advertisement</div>
+
+      <!-- BROWSE BY CATEGORY -->
+      <div class="sw">
+        <h3 class="sw-title">📂 Browse by Category</h3>
+        <ul class="cat-links">
+          <li><a onclick="filterArticles('all');document.getElementById('articles').scrollIntoView({behavior:'smooth'})" data-cat="all">✨ All Articles <span class="count">13</span></a></li>
+          <li><a onclick="filterArticles('lawn-garden');document.getElementById('articles').scrollIntoView({behavior:'smooth'})" data-cat="lawn-garden">🌿 Lawn & Garden <span class="count">3</span></a></li>
+          <li><a onclick="filterArticles('floral-crafts');document.getElementById('articles').scrollIntoView({behavior:'smooth'})" data-cat="floral-crafts">🌸 Floral Crafts <span class="count">3</span></a></li>
+          <li><a onclick="filterArticles('home-decor');document.getElementById('articles').scrollIntoView({behavior:'smooth'})" data-cat="home-decor">🏡 Home Decor <span class="count">3</span></a></li>
+          <li><a onclick="filterArticles('wedding-decor');document.getElementById('articles').scrollIntoView({behavior:'smooth'})" data-cat="wedding-decor">💍 Wedding Decor <span class="count">3</span></a></li>
+          <li><a onclick="filterArticles('free-guides');document.getElementById('articles').scrollIntoView({behavior:'smooth'})" data-cat="free-guides">📖 Free Guides <span class="count">3</span></a></li>
+        </ul>
+      </div>
+
+      <!-- FREE GUIDES SIDEBAR -->
+      <div class="sw sw-guides">
+        <h3 class="sw-title">📖 Free Guides</h3>
+        <div class="guide-item">
+          <span class="guide-icon">🌹</span>
+          <div class="guide-info"><div class="name">Ribbon Rose Beginner Guide</div><div class="tag">FREE Download</div></div>
+          <a href="guide-ribbon-roses-free.html" class="guide-btn">Get →</a>
+        </div>
+        <div class="guide-item">
+          <span class="guide-icon">🌼</span>
+          <div class="guide-info"><div class="name">Garden Bloom Calendar</div><div class="tag">FREE Download</div></div>
+          <a href="guide-garden-planning-free.html" class="guide-btn">Get →</a>
+        </div>
+        <div class="guide-item">
+          <span class="guide-icon">🏡</span>
+          <div class="guide-info"><div class="name">Home Decor Weekend Projects</div><div class="tag">FREE Download</div></div>
+          <a href="guide-home-decor-free.html" class="guide-btn">Get →</a>
+        </div>
+        <div style="margin-top:.85rem;">
+          <a href="free-guides.html" style="display:block;text-align:center;background:var(--green-dark);color:#fff;text-decoration:none;padding:.55rem;border-radius:8px;font-size:.78rem;font-weight:700;">View All Free Guides →</a>
+        </div>
+      </div>
+
+      <div class="ad ad-rect" style="position:sticky;top:74px;"><!-- ezoic-pub-ad-placeholder-108 --> Advertisement</div>
+    </aside>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="nl">
+  <div class="nl-in">
+    <h2>Get Weekly Garden & Craft Ideas</h2>
+    <p>Join 14,000+ readers who get our best garden, floral & home decor ideas every Thursday — free.</p>
+    <div class="nl-form">
+      <input type="email" placeholder="Your email address">
+      <button>Subscribe Free</button>
+    </div>
+    <p class="nl-disc">No spam. Unsubscribe anytime.</p>
+  </div>
+</section>
+
+<!-- BOTTOM AD -->
+<div style="background:#f5f5f5;padding:8px 1.5rem;"><div style="max-width:1200px;margin:0 auto;"><div class="ad ad-leader"><!-- ezoic-pub-ad-placeholder-109 --> Advertisement</div></div></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-main">
+    <div class="ft-brand">
+      <a href="index.html" class="ft-logo">Garden<em>Bloom</em></a>
+      <p>Your home for lawn & garden inspiration, floral craft guides, wedding decor ideas, and beautiful home styling — for every skill level and budget.</p>
+    </div>
+    <div class="ft-col">
+      <h4>Topics</h4>
+      <a onclick="filterArticles('lawn-garden');window.scrollTo(0,0)">Lawn & Garden</a>
+      <a onclick="filterArticles('floral-crafts');window.scrollTo(0,0)">Floral Crafts</a>
+      <a onclick="filterArticles('wedding-decor');window.scrollTo(0,0)">Wedding Decor</a>
+      <a onclick="filterArticles('home-decor');window.scrollTo(0,0)">Home Decor</a>
+      <a onclick="filterArticles('free-guides');window.scrollTo(0,0)">Free Guides</a>
+    </div>
+    <div class="ft-col">
+      <h4>Free Guides</h4>
+      <a href="guide-ribbon-roses-free.html">Ribbon Rose Guide</a>
+      <a href="guide-garden-planning-free.html">Garden Planning</a>
+      <a href="guide-home-decor-free.html">Home Decor Projects</a>
+      <a href="free-guides.html">All Free Guides</a>
+    </div>
+    <div class="ft-col">
+      <h4>Info</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="terms.html">Terms of Service</a>
+      <a href="sitemap.xml">Sitemap</a>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <span>© 2025 GardenBloom. All rights reserved.</span>
+    <div class="ft-bot-links">
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="disclaimer.html">Disclaimer</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="disc-bar"><strong>Disclosure:</strong> This site earns from display advertising. Content is free and educational.</div>
+</footer>
+
+<script>
+// Auto-filter from URL param e.g. index.html?cat=floral-crafts
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const cat = params.get('cat');
+  if (cat) {
+    filterArticles(cat);
+    document.getElementById('articles').scrollIntoView({behavior:'smooth'});
+  }
+});
+
+const categoryNames = {
+  'all': 'All Articles',
+  'lawn-garden': '🌿 Lawn & Garden',
+  'floral-crafts': '🌸 Floral Crafts',
+  'home-decor': '🏡 Home Decor',
+  'wedding-decor': '💍 Wedding Decor',
+  'free-guides': '📖 Free Guides'
+};
+
+function filterArticles(category) {
+  const articles = document.querySelectorAll('.art[data-category]');
+  const noResults = document.getElementById('no-results');
+  const sectionTitle = document.getElementById('section-title');
+  const categoryBadge = document.getElementById('category-badge');
+  const adBlocks = document.querySelectorAll('.ad-inline');
+
+  let visibleCount = 0;
+
+  articles.forEach(art => {
+    if (category === 'all' || art.dataset.category === category) {
+      art.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      art.classList.add('hidden');
+    }
+  });
+
+  // Show/hide ads only when showing all
+  adBlocks.forEach(ad => {
+    ad.style.display = category === 'all' ? 'block' : 'none';
+  });
+
+  // Update section title
+  sectionTitle.textContent = categoryNames[category] || 'All Articles';
+
+  // Show/hide badge
+  if (category !== 'all') {
+    categoryBadge.textContent = visibleCount + ' articles';
+    categoryBadge.style.display = 'inline-block';
+  } else {
+    categoryBadge.style.display = 'none';
+  }
+
+  // No results
+  noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+
+  // Update filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.cat === category);
+  });
+
+  // Update nav links
+  document.querySelectorAll('nav a[data-cat]').forEach(a => {
+    a.classList.toggle('active', a.dataset.cat === category);
+  });
+
+  // Update sidebar category links
+  document.querySelectorAll('.cat-links a[data-cat]').forEach(a => {
+    a.classList.toggle('active', a.dataset.cat === category);
+  });
+
+  // Update category cards
+  document.querySelectorAll('.cat').forEach(cat => {
+    const onclick = cat.getAttribute('onclick') || '';
+    const match = onclick.match(/filterArticles\('([^']+)'\)/);
+    if (match) {
+      cat.classList.toggle('active', match[1] === category);
+    }
+  });
+}
+</script>
+
+</body>
+</html>
