@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gardenidea CMS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--green:#1a3a1a;--gm:#2d6a2d;--gold:#c8a44a;--border:#e5e7eb;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f8faf8;color:#1a1a1a;}
+.serif{font-family:'Playfair Display',serif;}
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:#f1f1f1;}
+::-webkit-scrollbar-thumb{background:#c1c1c1;border-radius:3px;}
+
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#0f2b0f,#1a3a1a);}
+.login-card{background:#fff;border-radius:16px;padding:2.5rem;width:100%;max-width:400px;box-shadow:0 25px 50px rgba(0,0,0,.3);}
+.login-logo{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:#1a3a1a;text-align:center;margin-bottom:.25rem;}
+.login-logo span{color:#2d6a2d;}
+.login-sub{text-align:center;font-size:.8rem;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:2rem;}
+.field label{display:block;font-size:.75rem;font-weight:600;color:#555;margin-bottom:.35rem;}
+.field input{width:100%;padding:.65rem .9rem;border:1.5px solid #e5e7eb;border-radius:8px;font-size:.9rem;outline:none;transition:border .2s;}
+.field input:focus{border-color:#2d6a2d;}
+.field{margin-bottom:1rem;}
+.btn-login{width:100%;padding:.75rem;background:#1a3a1a;color:#fff;border:none;border-radius:8px;font-weight:600;font-size:.9rem;cursor:pointer;margin-top:.5rem;transition:background .2s;}
+.btn-login:hover{background:#2d6a2d;}
+.login-err{color:#c0392b;font-size:.8rem;text-align:center;margin-top:.75rem;display:none;}
+.login-hint{font-size:.7rem;color:#aaa;text-align:center;margin-top:1rem;padding-top:1rem;border-top:1px solid #f0f0f0;}
+
+/* APP */
+#app{display:none;flex-direction:column;min-height:100vh;}
+.topnav{background:#1a3a1a;color:#fff;padding:0 1.5rem;height:52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-shrink:0;}
+.topnav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;}
+.topnav-logo span{color:#c8a44a;}
+.topnav-right{display:flex;align-items:center;gap:.75rem;}
+.topnav-user{font-size:.78rem;opacity:.65;background:rgba(255,255,255,.1);padding:.2rem .65rem;border-radius:20px;}
+.btn-logout{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;padding:.3rem .75rem;border-radius:20px;font-size:.72rem;cursor:pointer;transition:background .2s;}
+.btn-logout:hover{background:rgba(255,255,255,.18);}
+.topnav-viewsite{color:rgba(255,255,255,.55);font-size:.72rem;text-decoration:none;transition:color .2s;}
+.topnav-viewsite:hover{color:#c8a44a;}
+
+.layout{display:flex;flex:1;overflow:hidden;height:calc(100vh - 52px);}
+
+/* SIDEBAR */
+.sidebar{width:210px;background:#fff;border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.sb-section{padding:.6rem 1rem .25rem;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#b0b8c0;font-weight:700;margin-top:.25rem;}
+.sb-btn{display:flex;align-items:center;gap:.55rem;width:100%;padding:.55rem 1rem;background:none;border:none;font-size:.81rem;color:#4b5563;cursor:pointer;text-align:left;transition:all .15s;border-left:3px solid transparent;}
+.sb-btn:hover{background:#f0fdf0;color:#1a3a1a;}
+.sb-btn.active{background:#f0fdf0;color:#1a3a1a;border-left-color:#2d6a2d;font-weight:600;}
+.sb-icon{font-size:.9rem;width:18px;flex-shrink:0;}
+.sb-footer{margin-top:auto;padding:.85rem 1rem;border-top:1px solid var(--border);font-size:.68rem;color:#bbb;text-align:center;}
+
+/* MAIN */
+.main{flex:1;overflow-y:auto;}
+.page{display:none;padding:1.25rem;}
+.page.active{display:block;}
+.page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem;}
+.page-title{font-size:1.1rem;font-weight:700;color:#1a3a1a;}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1.15rem;}
+.card-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#2d6a2d;margin-bottom:.85rem;padding-bottom:.45rem;border-bottom:1px solid var(--border);}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.85rem;margin-bottom:1.25rem;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:1rem;text-align:center;}
+.stat-n{font-family:'Playfair Display',serif;font-size:1.85rem;font-weight:700;color:#1a3a1a;line-height:1;}
+.stat-l{font-size:.65rem;color:#888;margin-top:.3rem;text-transform:uppercase;letter-spacing:.5px;}
+.stat-icon{font-size:1.35rem;margin-bottom:.35rem;}
+
+/* ARTICLE LIST */
+.art-list{display:flex;flex-direction:column;gap:.65rem;}
+.art-row{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.85rem 1.1rem;display:flex;align-items:center;gap:.85rem;transition:box-shadow .15s;}
+.art-row:hover{box-shadow:0 3px 12px rgba(0,0,0,.07);}
+.art-img{width:56px;height:42px;border-radius:6px;object-fit:cover;background:#e8f5e8;flex-shrink:0;}
+.art-info{flex:1;min-width:0;}
+.art-title{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.art-meta{font-size:.7rem;color:#888;display:flex;gap:.65rem;margin-top:.2rem;flex-wrap:wrap;align-items:center;}
+.badge{display:inline-block;padding:1px 7px;border-radius:20px;font-size:.62rem;font-weight:700;text-transform:uppercase;}
+.badge-pub{background:#dcfce7;color:#15803d;}
+.badge-draft{background:#fef9c3;color:#854d0e;}
+.seo-score{display:inline-flex;align-items:center;gap:.25rem;font-size:.68rem;font-weight:600;}
+.score-dot{width:7px;height:7px;border-radius:50%;}
+.score-green{background:#22c55e;}
+.score-yellow{background:#eab308;}
+.score-red{background:#ef4444;}
+
+/* FORM */
+.field-group{margin-bottom:.9rem;}
+.field-group label{display:block;font-size:.73rem;font-weight:600;color:#374151;margin-bottom:.28rem;}
+.field-group input,.field-group textarea,.field-group select{width:100%;padding:.55rem .8rem;border:1.5px solid var(--border);border-radius:7px;font-size:.85rem;font-family:'Inter',sans-serif;outline:none;transition:border .2s;background:#fff;color:#1a1a1a;}
+.field-group input:focus,.field-group textarea:focus,.field-group select:focus{border-color:#2d6a2d;}
+.field-group textarea{resize:vertical;line-height:1.6;}
+.char-count{font-size:.66rem;color:#aaa;text-align:right;margin-top:.15rem;}
+.char-warn{color:#eab308;}
+.char-over{color:#ef4444;}
+.hint{font-size:.68rem;color:#9ca3af;margin-top:.2rem;}
+.slug-preview{font-size:.7rem;color:#2d6a2d;margin-top:.2rem;word-break:break-all;}
+
+/* EDITOR GRID */
+.editor-grid{display:grid;grid-template-columns:1fr 300px;gap:1.1rem;}
+.editor-col{display:flex;flex-direction:column;gap:.9rem;}
+
+/* RICH EDITOR */
+.toolbar{background:#f9fafb;border:1.5px solid var(--border);border-bottom:none;border-radius:7px 7px 0 0;padding:.45rem .55rem;display:flex;gap:.25rem;flex-wrap:wrap;align-items:center;}
+.tb{padding:.25rem .5rem;background:#fff;border:1px solid #d1d5db;border-radius:4px;font-size:.73rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all .1s;white-space:nowrap;}
+.tb:hover{background:#1a3a1a;color:#fff;border-color:#1a3a1a;}
+.tb-sep{width:1px;height:16px;background:#d1d5db;margin:0 .1rem;}
+#editor{border:1.5px solid var(--border);border-top:none;border-radius:0 0 7px 7px;min-height:320px;padding:.9rem;font-size:.88rem;line-height:1.8;outline:none;overflow-y:auto;}
+#editor h2{font-family:'Playfair Display',serif;font-size:1.25rem;color:#1a3a1a;margin:.7rem 0 .35rem;}
+#editor h3{font-family:'Playfair Display',serif;font-size:1rem;color:#2d6a2d;margin:.55rem 0 .25rem;}
+#editor p{margin:.25rem 0;}
+#editor ul,#editor ol{margin:.35rem 0 .35rem 1.3rem;}
+#editor blockquote{border-left:3px solid #c8a44a;padding:.45rem .9rem;margin:.45rem 0;background:#fffbf0;border-radius:0 6px 6px 0;font-style:italic;}
+#editor:empty::before{content:'Start writing your article here...';color:#9ca3af;pointer-events:none;}
+
+/* SEO PREVIEW */
+.seo-preview-box{background:#f9fafb;border:1px solid var(--border);border-radius:8px;padding:.85rem;}
+.prev-url{color:#006621;font-size:.7rem;margin-bottom:.12rem;}
+.prev-title{color:#1a0dab;font-size:.88rem;font-weight:400;margin-bottom:.1rem;line-height:1.3;}
+.prev-desc{color:#545454;font-size:.76rem;line-height:1.5;}
+
+/* AI PANEL */
+.ai-panel{background:linear-gradient(135deg,#0f2b0f,#1a3a1a);color:#fff;border-radius:10px;padding:1rem;}
+.ai-title{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#c8a44a;margin-bottom:.65rem;}
+.ai-btn{width:100%;padding:.5rem .7rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:6px;color:#fff;font-size:.76rem;cursor:pointer;text-align:left;transition:all .15s;margin-bottom:.35rem;font-family:'Inter',sans-serif;}
+.ai-btn:hover{background:rgba(255,255,255,.2);}
+.ai-output{background:rgba(0,0,0,.3);border-radius:6px;padding:.7rem;font-size:.76rem;line-height:1.7;min-height:55px;color:rgba(255,255,255,.85);margin-top:.65rem;white-space:pre-wrap;word-break:break-word;}
+.ai-loading{display:flex;align-items:center;gap:.45rem;font-size:.76rem;opacity:.7;margin-top:.45rem;}
+.ai-dot{width:5px;height:5px;border-radius:50%;background:#c8a44a;animation:pulse 1s infinite;}
+.ai-dot:nth-child(2){animation-delay:.2s;}
+.ai-dot:nth-child(3){animation-delay:.4s;}
+@keyframes pulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* FAQ BUILDER */
+.faq-item-wrap{background:#f9fafb;border:1px solid var(--border);border-radius:7px;padding:.8rem;margin-bottom:.45rem;}
+.faq-num{font-size:.63rem;font-weight:700;color:#2d6a2d;margin-bottom:.35rem;text-transform:uppercase;letter-spacing:.5px;}
+.faq-q-input,.faq-a-input{width:100%;padding:.42rem .65rem;border:1px solid var(--border);border-radius:5px;font-size:.8rem;font-family:'Inter',sans-serif;outline:none;}
+.faq-q-input{margin-bottom:.3rem;}
+.faq-a-input{min-height:52px;resize:vertical;}
+.faq-remove{float:right;background:none;border:none;color:#9ca3af;cursor:pointer;font-size:.95rem;padding:0 .2rem;}
+.faq-remove:hover{color:#ef4444;}
+
+/* SCHEMA OUTPUT */
+.schema-out{background:#1a1a2e;color:#a0ffa0;padding:.9rem;border-radius:8px;font-family:'Courier New',monospace;font-size:.7rem;white-space:pre-wrap;max-height:260px;overflow-y:auto;line-height:1.6;}
+
+/* SITEMAP */
+.sitemap-out{background:#f1f5f9;border:1px solid var(--border);border-radius:8px;padding:.9rem;font-family:monospace;font-size:.7rem;white-space:pre;max-height:320px;overflow:auto;}
+
+/* BUTTONS */
+.btn{padding:.45rem 1rem;border-radius:7px;border:none;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
+.btn-primary{background:#1a3a1a;color:#fff;}
+.btn-primary:hover{background:#2d6a2d;}
+.btn-gold{background:#c8a44a;color:#1a1a1a;}
+.btn-gold:hover{opacity:.9;}
+.btn-outline{background:#fff;color:#1a3a1a;border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:#2d6a2d;}
+.btn-danger{background:#ef4444;color:#fff;}
+.btn-danger:hover{background:#dc2626;}
+.btn-sm{padding:.3rem .65rem;font-size:.73rem;}
+.btn-group{display:flex;gap:.4rem;flex-wrap:wrap;}
+
+/* SCHEMA PILLS */
+.schema-pills{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:.65rem;}
+.schema-pill{padding:.28rem .7rem;border-radius:20px;border:1.5px solid var(--border);background:#fff;font-size:.7rem;cursor:pointer;transition:all .15s;font-family:'Inter',sans-serif;}
+.schema-pill.on{background:#1a3a1a;color:#fff;border-color:#1a3a1a;}
+
+/* SEO SCORE METER */
+.seo-meter{height:5px;background:#e5e7eb;border-radius:3px;margin:.35rem 0;}
+.seo-bar{height:100%;border-radius:3px;transition:width .4s;}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.25rem;right:1.25rem;background:#1a3a1a;color:#fff;padding:.65rem 1.1rem;border-radius:8px;font-size:.8rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .3s;z-index:9999;max-width:300px;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.err{background:#c0392b;}
+.toast.info{background:#2563eb;}
+
+/* API KEY */
+.api-key-field{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:.45rem .7rem;color:#fff;font-size:.76rem;width:100%;font-family:monospace;outline:none;margin-bottom:.45rem;}
+
+/* MOBILE SIDEBAR TOGGLE */
+.sb-mobile-toggle{display:none;position:fixed;bottom:1.25rem;left:1.25rem;background:#1a3a1a;color:#fff;border:none;border-radius:50%;width:44px;height:44px;font-size:1.1rem;cursor:pointer;z-index:200;box-shadow:0 4px 16px rgba(0,0,0,.2);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .editor-grid{grid-template-columns:1fr;}
+  .sidebar{position:fixed;left:-210px;top:52px;height:calc(100vh - 52px);z-index:150;transition:left .25s;box-shadow:4px 0 16px rgba(0,0,0,.1);}
+  .sidebar.open{left:0;}
+  .sb-mobile-toggle{display:flex;align-items:center;justify-content:center;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:600px){
+  .art-row{flex-wrap:wrap;}
+  .art-img{display:none;}
+  .btn-group{gap:.3rem;}
+  .topnav-user{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">Garden<span>idea</span></div>
+    <div class="login-sub">Content Management System</div>
+    <div class="field">
+      <label>Username</label>
+      <input type="text" id="login-user" placeholder="admin" autocomplete="username">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="btn-login" onclick="doLogin()">Sign In →</button>
+    <div class="login-err" id="login-err">❌ Incorrect username or password.</div>
+    <div class="login-hint">Default: <strong>admin</strong> / <strong>gardenidea2026</strong></div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="topnav">
+    <div class="topnav-logo">Garden<span>idea</span> <span style="font-size:.65rem;opacity:.35;font-family:'Inter',sans-serif;font-weight:400;margin-left:.25rem;">CMS</span></div>
+    <div class="topnav-right">
+      <span class="topnav-user" id="nav-user"></span>
+      <a href="index.html" target="_blank" class="topnav-viewsite">View Site ↗</a>
+      <button class="btn-logout" onclick="doLogout()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="sidebar" id="sidebar">
+      <div class="sb-section">Content</div>
+      <button class="sb-btn active" onclick="showPage('dashboard',this)"><span class="sb-icon">📊</span>Dashboard</button>
+      <button class="sb-btn" onclick="showPage('articles',this)"><span class="sb-icon">📄</span>All Articles</button>
+      <button class="sb-btn" onclick="newArticle()"><span class="sb-icon">✏️</span>New Article</button>
+
+      <div class="sb-section">SEO & Schema</div>
+      <button class="sb-btn" onclick="showPage('seo',this)"><span class="sb-icon">🔍</span>SEO Overview</button>
+      <button class="sb-btn" onclick="showPage('schema',this)"><span class="sb-icon">🧩</span>Schema Builder</button>
+      <button class="sb-btn" onclick="showPage('sitemap',this)"><span class="sb-icon">🗺️</span>Sitemap</button>
+
+      <div class="sb-section">Settings</div>
+      <button class="sb-btn" onclick="showPage('settings',this)"><span class="sb-icon">⚙️</span>Settings</button>
+
+      <div class="sb-footer">Gardenidea CMS v2.1<br><span style="color:#ddd;">Made with ♥</span></div>
+    </nav>
+
+    <main class="main">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="page-header">
+          <div class="page-title">📊 Dashboard</div>
+          <button class="btn btn-primary" onclick="newArticle()">+ New Article</button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">📄</div><div class="stat-n" id="dash-total">0</div><div class="stat-l">Total Articles</div></div>
+          <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-n" id="dash-pub">0</div><div class="stat-l">Published</div></div>
+          <div class="stat-card"><div class="stat-icon">📝</div><div class="stat-n" id="dash-draft">0</div><div class="stat-l">Drafts</div></div>
+          <div class="stat-card"><div class="stat-icon">🧩</div><div class="stat-n" id="dash-schema">0</div><div class="stat-l">With Schema</div></div>
+          <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-n" id="dash-score">-</div><div class="stat-l">Avg SEO Score</div></div>
+        </div>
+        <div class="card" style="margin-bottom:.9rem;">
+          <div class="card-title">Recent Articles</div>
+          <div id="dash-recent" class="art-list"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+          <div class="card">
+            <div class="card-title">📌 Pinterest Traffic Tips</div>
+            <ul style="font-size:.8rem;color:#555;line-height:2;list-style:none;">
+              <li>🌿 Post 5–10 pins per article (different designs)</li>
+              <li>🌿 Best time: 8–11 PM EST</li>
+              <li>🌿 Use keyword in pin title + description</li>
+              <li>🌿 Pin to multiple relevant boards</li>
+              <li>🌿 FAQ schema → Google AI Overview</li>
+              <li>🌿 Long articles = more ad slots = more revenue</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-title">🤖 AI Traffic Checklist</div>
+            <ul style="font-size:.8rem;color:#555;line-height:2;list-style:none;">
+              <li>✅ FAQ schema on every article</li>
+              <li>✅ Article schema with author/date</li>
+              <li>✅ H2/H3 structure for AI parsing</li>
+              <li>✅ Q&amp;A style FAQ questions</li>
+              <li>✅ robots.txt allows GPTBot</li>
+              <li>✅ Sitemap submitted to Google</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTICLES LIST -->
+      <div class="page" id="page-articles">
+        <div class="page-header">
+          <div class="page-title">📄 All Articles</div>
+          <button class="btn btn-primary" onclick="newArticle()">+ New Article</button>
+        </div>
+        <div id="articles-list" class="art-list"></div>
+      </div>
+
+      <!-- EDITOR -->
+      <div class="page" id="page-editor">
+        <div class="page-header">
+          <div class="page-title" id="editor-title-label">New Article</div>
+          <div class="btn-group">
+            <button class="btn btn-outline btn-sm" onclick="showPage('articles',null)">← Back</button>
+            <button class="btn btn-outline btn-sm" onclick="saveArticle('draft')">Save Draft</button>
+            <button class="btn btn-gold btn-sm" onclick="exportHTML()">⬇ Export HTML</button>
+            <button class="btn btn-primary btn-sm" onclick="saveArticle('published')">Publish →</button>
+          </div>
+        </div>
+        <div class="editor-grid">
+          <div class="editor-col">
+            <div class="card">
+              <div class="card-title">Article Content</div>
+              <div class="field-group">
+                <label>H1 Title *</label>
+                <input type="text" id="art-title" placeholder="e.g. How to Create a Cottage Garden in 5 Simple Steps" oninput="onTitleChange()">
+              </div>
+              <div class="field-group">
+                <label>Article Body</label>
+                <div class="toolbar">
+                  <button class="tb" onclick="fmt('h2')">H2</button>
+                  <button class="tb" onclick="fmt('h3')">H3</button>
+                  <div class="tb-sep"></div>
+                  <button class="tb" onclick="fmt('bold')"><b>B</b></button>
+                  <button class="tb" onclick="fmt('italic')"><i>I</i></button>
+                  <div class="tb-sep"></div>
+                  <button class="tb" onclick="fmt('ul')">• List</button>
+                  <button class="tb" onclick="fmt('ol')">1. List</button>
+                  <button class="tb" onclick="fmt('blockquote')">💡 Tip</button>
+                  <div class="tb-sep"></div>
+                  <button class="tb" onclick="fmt('removeFormat')">Clear</button>
+                </div>
+                <div id="editor" contenteditable="true" spellcheck="true"></div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">❓ FAQ Section <span style="font-weight:400;color:#888;font-size:.68rem;">(Google AI Overview + ChatGPT citations)</span></div>
+              <p style="font-size:.77rem;color:#888;margin-bottom:.8rem;line-height:1.6;">Write questions exactly how users type them into Google or AI tools. This is how you appear in AI Overviews.</p>
+              <div id="faq-list"></div>
+              <button class="btn btn-outline btn-sm" onclick="addFAQ()" style="width:100%;margin-top:.45rem;">+ Add FAQ Question</button>
+            </div>
+          </div>
+
+          <div class="editor-col">
+            <div class="card">
+              <div class="card-title">Publish</div>
+              <div class="field-group">
+                <label>Status</label>
+                <select id="art-status"><option value="draft">Draft</option><option value="published">Published</option></select>
+              </div>
+              <div class="field-group">
+                <label>Category</label>
+                <select id="art-category">
+                  <option>Lawn & Garden</option><option>Floral Crafts</option>
+                  <option>Wedding Decor</option><option>Home Decor</option>
+                  <option>Outdoor Living</option><option>Backyard</option>
+                  <option>Aesthetic</option><option>String Lights</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label>Date Published</label>
+                <input type="date" id="art-date">
+              </div>
+              <div class="field-group">
+                <label>Hero Image URL</label>
+                <input type="url" id="art-img" placeholder="https://images.unsplash.com/...">
+                <div class="hint">Use Unsplash or Pexels free images</div>
+              </div>
+              <div class="field-group">
+                <label>Image Alt Text</label>
+                <input type="text" id="art-img-alt" placeholder="Describe image for SEO & accessibility">
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">🔍 SEO Settings</div>
+              <div class="field-group">
+                <label>SEO Title <span style="font-weight:400;color:#aaa;">(Google result)</span></label>
+                <input type="text" id="seo-title" placeholder="SEO Title | Gardenidea" oninput="updateSEOPreview();countChars('seo-title',60,'seo-title-count')">
+                <div class="char-count" id="seo-title-count">0 / 60</div>
+              </div>
+              <div class="field-group">
+                <label>Meta Description</label>
+                <textarea id="seo-desc" rows="3" placeholder="120–160 chars with main keyword..." oninput="updateSEOPreview();countChars('seo-desc',160,'seo-desc-count')"></textarea>
+                <div class="char-count" id="seo-desc-count">0 / 160</div>
+              </div>
+              <div class="field-group">
+                <label>URL Slug</label>
+                <input type="text" id="art-slug" placeholder="article-cottage-garden" oninput="updateSEOPreview()">
+                <div class="slug-preview" id="slug-preview">gardenidea.online/article-slug.html</div>
+              </div>
+              <div class="field-group">
+                <label>Focus Keyword</label>
+                <input type="text" id="seo-keyword" placeholder="e.g. cottage garden ideas beginner">
+              </div>
+              <div class="card-title" style="margin-top:.9rem;">Google Preview</div>
+              <div class="seo-preview-box">
+                <div class="prev-url" id="prev-url">gardenidea.online › article-slug</div>
+                <div class="prev-title" id="prev-title">SEO Title will appear here</div>
+                <div class="prev-desc" id="prev-desc">Meta description appears here in Google search results.</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title">🧩 Schema Markup</div>
+              <div class="schema-pills" id="schema-pills">
+                <button class="schema-pill on" data-schema="Article">Article</button>
+                <button class="schema-pill on" data-schema="FAQPage">FAQ Page</button>
+                <button class="schema-pill" data-schema="HowTo">HowTo</button>
+                <button class="schema-pill" data-schema="BreadcrumbList">Breadcrumb</button>
+              </div>
+              <div class="hint">Article + FAQPage = best for AI citations.</div>
+            </div>
+
+            <div class="ai-panel">
+              <div class="ai-title">🤖 AI Writing Assistant</div>
+              <input type="password" class="api-key-field" id="ai-key" placeholder="Paste your Claude API key here..." autocomplete="off">
+              <button class="ai-btn" onclick="aiGenerate('seo')">✨ Generate SEO Title & Description</button>
+              <button class="ai-btn" onclick="aiGenerate('faq')">❓ Generate 5 FAQ Questions</button>
+              <button class="ai-btn" onclick="aiGenerate('intro')">📝 Write Article Introduction</button>
+              <button class="ai-btn" onclick="aiGenerate('outline')">📋 Generate Article Outline</button>
+              <button class="ai-btn" onclick="aiGenerate('pinterest')">📌 Write Pinterest Description</button>
+              <div id="ai-loading" style="display:none;" class="ai-loading">
+                <div class="ai-dot"></div><div class="ai-dot"></div><div class="ai-dot"></div>
+                <span>AI is thinking...</span>
+              </div>
+              <div id="ai-output" class="ai-output" style="display:none;"></div>
+              <button id="ai-apply" class="ai-btn" style="display:none;margin-top:.45rem;" onclick="applyAIOutput()">↑ Apply to Article</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO OVERVIEW -->
+      <div class="page" id="page-seo">
+        <div class="page-header"><div class="page-title">🔍 SEO Overview</div></div>
+        <div id="seo-overview-list" class="art-list"></div>
+      </div>
+
+      <!-- SCHEMA BUILDER -->
+      <div class="page" id="page-schema">
+        <div class="page-header"><div class="page-title">🧩 Schema Builder</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+          <div class="card">
+            <div class="card-title">Generate Schema</div>
+            <div class="field-group">
+              <label>Select Article</label>
+              <select id="schema-select" onchange="generateSchemaPreview()">
+                <option value="">-- Select an article --</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label>Schema Types</label>
+              <div style="display:flex;gap:.5rem;flex-wrap:wrap;">
+                <label style="display:flex;align-items:center;gap:.3rem;font-size:.78rem;cursor:pointer;"><input type="checkbox" checked value="Article" class="schema-check"> Article</label>
+                <label style="display:flex;align-items:center;gap:.3rem;font-size:.78rem;cursor:pointer;"><input type="checkbox" checked value="FAQPage" class="schema-check"> FAQPage</label>
+                <label style="display:flex;align-items:center;gap:.3rem;font-size:.78rem;cursor:pointer;"><input type="checkbox" value="BreadcrumbList" class="schema-check"> Breadcrumb</label>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="generateSchemaPreview()">Generate Schema</button>
+          </div>
+          <div class="card">
+            <div class="card-title">Generated Schema (paste into &lt;head&gt;)</div>
+            <div id="schema-output" class="schema-out">Select an article to generate schema...</div>
+            <div class="btn-group" style="margin-top:.65rem;">
+              <button class="btn btn-outline btn-sm" onclick="copySchema()">📋 Copy</button>
+              <button class="btn btn-primary btn-sm" onclick="downloadSchema()">⬇ Download</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:.9rem;">
+          <div class="card-title">ℹ️ Why Schema = More AI Traffic</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.85rem;font-size:.8rem;color:#555;">
+            <div style="padding:.7rem;background:#f0fdf4;border-radius:8px;"><strong style="color:#1a3a1a;">Google AI Overview</strong><p style="margin-top:.25rem;">FAQ schema tells Google exactly what your article answers. This gets you into the AI answer box at the top.</p></div>
+            <div style="padding:.7rem;background:#eff6ff;border-radius:8px;"><strong style="color:#1a3a1a;">ChatGPT & Perplexity</strong><p style="margin-top:.25rem;">Article schema with author, date, description helps AI tools cite your content as a source.</p></div>
+            <div style="padding:.7rem;background:#fdf4ff;border-radius:8px;"><strong style="color:#1a3a1a;">Gemini</strong><p style="margin-top:.25rem;">Structured FAQ data helps Gemini pull your answers into its responses directly.</p></div>
+            <div style="padding:.7rem;background:#fff7ed;border-radius:8px;"><strong style="color:#1a3a1a;">Pinterest SEO</strong><p style="margin-top:.25rem;">OG tags from Article schema improve how your article previews on Pinterest.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SITEMAP -->
+      <div class="page" id="page-sitemap">
+        <div class="page-header"><div class="page-title">🗺️ Sitemap & Robots.txt</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+          <div class="card">
+            <div class="card-title">sitemap.xml</div>
+            <div id="sitemap-out" class="sitemap-out">Click Generate...</div>
+            <div class="btn-group" style="margin-top:.65rem;">
+              <button class="btn btn-primary" onclick="generateSitemap()">Generate</button>
+              <button class="btn btn-outline btn-sm" onclick="downloadSitemap()">⬇ Download</button>
+              <button class="btn btn-outline btn-sm" onclick="copySitemap()">📋 Copy</button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">robots.txt <span style="font-weight:400;color:#888;font-size:.68rem;">(allows all AI crawlers)</span></div>
+            <div class="sitemap-out" id="robots-out">User-agent: *
+Allow: /
+Disallow: /cms.html
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+Sitemap: https://gardenidea.online/sitemap.xml</div>
+            <div class="btn-group" style="margin-top:.65rem;">
+              <button class="btn btn-outline btn-sm" onclick="downloadRobots()">⬇ robots.txt</button>
+              <button class="btn btn-outline btn-sm" onclick="copyRobots()">📋 Copy</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:.9rem;">
+          <div class="card-title">📋 After Downloading</div>
+          <ol style="font-size:.8rem;color:#555;line-height:2;margin-left:1.15rem;">
+            <li>Upload <strong>sitemap.xml</strong> and <strong>robots.txt</strong> to your Netlify site root</li>
+            <li>Go to <a href="https://search.google.com/search-console" target="_blank" style="color:#2d6a2d;">Google Search Console</a> → Sitemaps → Submit <code style="background:#f0f0f0;padding:1px 5px;border-radius:3px;">https://gardenidea.online/sitemap.xml</code></li>
+            <li>robots.txt already allows GPTBot, anthropic-ai, PerplexityBot, Google-Extended</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="page" id="page-settings">
+        <div class="page-header"><div class="page-title">⚙️ Settings</div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+          <div class="card">
+            <div class="card-title">Site Information</div>
+            <div class="field-group"><label>Site Name</label><input type="text" id="set-name" value="Gardenidea"></div>
+            <div class="field-group"><label>Site URL</label><input type="text" id="set-url" value="https://gardenidea.online"></div>
+            <div class="field-group"><label>Contact Email</label><input type="text" id="set-email" value="hello@gardenidea.online"></div>
+            <div class="field-group"><label>Pinterest URL</label><input type="text" id="set-pinterest" value="https://pinterest.com/10MinuteFacts"></div>
+            <div class="field-group"><label>Google Analytics ID</label><input type="text" id="set-ga" value="G-Z94RGGLMY1"></div>
+            <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+          </div>
+          <div class="card">
+            <div class="card-title">Account</div>
+            <div class="field-group"><label>Username</label><input type="text" id="set-username" value="admin"></div>
+            <div class="field-group"><label>New Password</label><input type="password" id="set-pass" placeholder="Leave blank to keep current"></div>
+            <div class="field-group"><label>Confirm Password</label><input type="password" id="set-pass2" placeholder="Confirm new password"></div>
+            <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+            <div style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border);">
+              <div class="card-title">Data Backup</div>
+              <div class="btn-group">
+                <button class="btn btn-outline btn-sm" onclick="exportData()">📤 Export JSON</button>
+                <button class="btn btn-outline btn-sm" onclick="importData()">📥 Import JSON</button>
+                <input type="file" id="import-file" accept=".json" style="display:none" onchange="doImport(this)">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<button class="sb-mobile-toggle" id="sbToggle" onclick="toggleSidebar()">☰</button>
+<div class="toast" id="toast"></div>
+
+<script>
+// ── STATE ──
+const CREDS_DEFAULT = {user:'admin',pass:'gardenidea2026'};
+let SITE = Object.assign({name:'Gardenidea',url:'https://gardenidea.online',email:'hello@gardenidea.online',pinterest:'https://pinterest.com/10MinuteFacts',ga:'G-Z94RGGLMY1'}, JSON.parse(localStorage.getItem('gi_site')||'{}'));
+let articles = JSON.parse(localStorage.getItem('gi_articles')||'null') || getDefaultArticles();
+let editingId = null, faqs = [], activeSchemas = new Set(['Article','FAQPage']), lastAIOutput = '', lastAIType = '';
+
+// ── SIDEBAR MOBILE ──
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');}
+document.addEventListener('click', e=>{
+  const sb = document.getElementById('sidebar');
+  const tog = document.getElementById('sbToggle');
+  if(sb && tog && !sb.contains(e.target) && !tog.contains(e.target)) sb.classList.remove('open');
+});
+
+// ── LOGIN ──
+function doLogin(){
+  const u=document.getElementById('login-user').value.trim();
+  const p=document.getElementById('login-pass').value;
+  const stored=JSON.parse(localStorage.getItem('gi_creds')||'null')||CREDS_DEFAULT;
+  if(u===stored.user && p===stored.pass){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app').style.display='flex';
+    document.getElementById('nav-user').textContent=u;
+    initApp();
+  } else {
+    const err=document.getElementById('login-err');
+    err.style.display='block';
+    setTimeout(()=>err.style.display='none',2500);
+  }
+}
+function doLogout(){
+  document.getElementById('app').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('login-user').value='';
+  document.getElementById('login-pass').value='';
+}
+function changePassword(){
+  const p1=document.getElementById('set-pass').value;
+  const p2=document.getElementById('set-pass2').value;
+  if(!p1) return toast('Enter a new password','err');
+  if(p1!==p2) return toast('Passwords do not match','err');
+  const u=document.getElementById('set-username').value.trim();
+  localStorage.setItem('gi_creds',JSON.stringify({user:u,pass:p1}));
+  toast('Password updated ✓');
+}
+
+// ── INIT ──
+function initApp(){
+  renderDashboard(); renderArticleList(); renderSEOOverview();
+  populateSchemaSelect(); generateSitemap(); loadSettings();
+  document.getElementById('art-date').value=new Date().toISOString().split('T')[0];
+}
+
+// ── NAVIGATION ──
+function showPage(name, btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.sb-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(name==='seo') renderSEOOverview();
+  if(name==='schema') populateSchemaSelect();
+  if(name==='sitemap') generateSitemap();
+  if(name==='dashboard') renderDashboard();
+  document.getElementById('sidebar').classList.remove('open');
+}
+
+// ── DASHBOARD ──
+function renderDashboard(){
+  const pub=articles.filter(a=>a.status==='published').length;
+  const draft=articles.filter(a=>a.status==='draft').length;
+  const schema=articles.filter(a=>a.faqs&&a.faqs.length>0).length;
+  const scores=articles.map(a=>calcSEOScore(a));
+  const avg=scores.length?Math.round(scores.reduce((a,b)=>a+b,0)/scores.length):0;
+  document.getElementById('dash-total').textContent=articles.length;
+  document.getElementById('dash-pub').textContent=pub;
+  document.getElementById('dash-draft').textContent=draft;
+  document.getElementById('dash-schema').textContent=schema;
+  document.getElementById('dash-score').textContent=avg+'%';
+  document.getElementById('dash-recent').innerHTML=[...articles].slice(-5).reverse().map(a=>artRowHTML(a)).join('');
+}
+
+// ── ARTICLE LIST ──
+function renderArticleList(){
+  document.getElementById('articles-list').innerHTML=articles.length
+    ?articles.map(a=>artRowHTML(a)).join('')
+    :'<p style="text-align:center;padding:2rem;color:#aaa;font-size:.85rem;">No articles yet. Create your first article!</p>';
+}
+
+function artRowHTML(a){
+  const score=calcSEOScore(a);
+  const col=score>=75?'score-green':score>=50?'score-yellow':'score-red';
+  return `<div class="art-row">
+    <img src="${a.img||''}" alt="" class="art-img" onerror="this.style.display='none'">
+    <div class="art-info">
+      <div class="art-title">${a.title||'Untitled'}</div>
+      <div class="art-meta">
+        <span class="badge badge-${a.status==='published'?'pub':'draft'}">${a.status}</span>
+        <span>${a.category||''}</span>
+        <span>${a.date||''}</span>
+        <span>${a.faqs&&a.faqs.length?'✅ '+a.faqs.length+' FAQs':'⚠️ No FAQs'}</span>
+        <span class="seo-score"><span class="score-dot ${col}"></span>SEO ${score}%</span>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline btn-sm" onclick="editArticle(${a.id})">Edit</button>
+      <button class="btn btn-gold btn-sm" onclick="exportHTMLById(${a.id})">Export</button>
+      <button class="btn btn-danger btn-sm" onclick="deleteArticle(${a.id})">×</button>
+    </div>
+  </div>`;
+}
+
+// ── SEO SCORE ──
+function calcSEOScore(a){
+  let s=0;
+  if(a.title&&a.title.length>20) s+=15;
+  if(a.seoTitle&&a.seoTitle.length>=30&&a.seoTitle.length<=60) s+=20;
+  if(a.seoDesc&&a.seoDesc.length>=100&&a.seoDesc.length<=160) s+=20;
+  if(a.slug) s+=10;
+  if(a.img) s+=10;
+  if(a.faqs&&a.faqs.length>=3) s+=15;
+  if(a.keyword) s+=10;
+  return s;
+}
+
+// ── SEO OVERVIEW ──
+function renderSEOOverview(){
+  document.getElementById('seo-overview-list').innerHTML=articles.map(a=>{
+    const score=calcSEOScore(a);
+    const checks=[
+      {ok:a.title&&a.title.length>20,label:'Title (H1)'},
+      {ok:a.seoTitle&&a.seoTitle.length>=30&&a.seoTitle.length<=60,label:'SEO Title (30–60 chars)'},
+      {ok:a.seoDesc&&a.seoDesc.length>=100&&a.seoDesc.length<=160,label:'Meta Desc (100–160 chars)'},
+      {ok:!!a.slug,label:'URL Slug'},{ok:!!a.img,label:'Hero Image'},
+      {ok:a.faqs&&a.faqs.length>=3,label:'3+ FAQs'},{ok:!!a.keyword,label:'Focus Keyword'},
+    ];
+    const col=score>=75?'#22c55e':score>=50?'#eab308':'#ef4444';
+    return `<div class="card" style="margin-bottom:.65rem;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.65rem;">
+        <div style="font-weight:600;font-size:.88rem;">${a.title||'Untitled'}</div>
+        <div style="display:flex;align-items:center;gap:.65rem;">
+          <span style="font-weight:700;color:${col};font-size:.95rem;">${score}%</span>
+          <button class="btn btn-outline btn-sm" onclick="editArticle(${a.id})">Edit</button>
+        </div>
+      </div>
+      <div class="seo-meter"><div class="seo-bar" style="width:${score}%;background:${col};"></div></div>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.5rem;">
+        ${checks.map(c=>`<span style="font-size:.68rem;padding:2px 7px;border-radius:12px;background:${c.ok?'#dcfce7':'#fee2e2'};color:${c.ok?'#15803d':'#b91c1c'};font-weight:600;">${c.ok?'✓':'✗'} ${c.label}</span>`).join('')}
+      </div>
+    </div>`;
+  }).join('')||'<p style="text-align:center;padding:2rem;color:#aaa;">No articles yet.</p>';
+}
+
+// ── EDITOR ──
+function newArticle(){
+  editingId=null; clearEditor();
+  document.getElementById('editor-title-label').textContent='New Article';
+  showPage('editor',null);
+}
+
+function editArticle(id){
+  const a=articles.find(x=>x.id===id); if(!a) return;
+  editingId=id;
+  document.getElementById('editor-title-label').textContent='Edit: '+a.title.substring(0,35)+'...';
+  document.getElementById('art-title').value=a.title||'';
+  document.getElementById('art-status').value=a.status||'draft';
+  document.getElementById('art-category').value=a.category||'Lawn & Garden';
+  document.getElementById('art-date').value=a.date||'';
+  document.getElementById('art-img').value=a.img||'';
+  document.getElementById('art-img-alt').value=a.imgAlt||'';
+  document.getElementById('seo-title').value=a.seoTitle||'';
+  document.getElementById('seo-desc').value=a.seoDesc||'';
+  document.getElementById('art-slug').value=a.slug||'';
+  document.getElementById('seo-keyword').value=a.keyword||'';
+  document.getElementById('editor').innerHTML=a.body||'';
+  faqs=a.faqs?[...a.faqs]:[];
+  renderFAQList();
+  activeSchemas=new Set(a.schemas||['Article','FAQPage']);
+  updateSchemaPills(); updateSEOPreview();
+  countChars('seo-title',60,'seo-title-count');
+  countChars('seo-desc',160,'seo-desc-count');
+  showPage('editor',null);
+}
+
+function clearEditor(){
+  ['art-title','seo-title','seo-desc','art-slug','seo-keyword','art-img','art-img-alt'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('editor').innerHTML='';
+  document.getElementById('art-status').value='draft';
+  document.getElementById('art-category').value='Lawn & Garden';
+  document.getElementById('art-date').value=new Date().toISOString().split('T')[0];
+  faqs=[]; renderFAQList();
+  activeSchemas=new Set(['Article','FAQPage']); updateSchemaPills(); updateSEOPreview();
+  document.getElementById('ai-output').style.display='none';
+  document.getElementById('ai-apply').style.display='none';
+}
+
+function deleteArticle(id){
+  if(!confirm('Delete this article? This cannot be undone.')) return;
+  articles=articles.filter(a=>a.id!==id);
+  saveData(); renderArticleList(); renderDashboard(); toast('Article deleted');
+}
+
+// ── FORMAT ──
+function fmt(cmd){
+  const ed=document.getElementById('editor'); ed.focus();
+  if(cmd==='h2') document.execCommand('formatBlock',false,'h2');
+  else if(cmd==='h3') document.execCommand('formatBlock',false,'h3');
+  else if(cmd==='ul') document.execCommand('insertUnorderedList');
+  else if(cmd==='ol') document.execCommand('insertOrderedList');
+  else if(cmd==='blockquote') document.execCommand('formatBlock',false,'blockquote');
+  else document.execCommand(cmd,false,null);
+}
+
+// ── SEO PREVIEW ──
+function onTitleChange(){
+  if(!editingId){
+    const t=document.getElementById('art-title').value;
+    document.getElementById('art-slug').value='article-'+t.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').substring(0,40);
+    if(!document.getElementById('seo-title').value){
+      document.getElementById('seo-title').value=t+' | Gardenidea';
+      countChars('seo-title',60,'seo-title-count');
+    }
+  }
+  updateSEOPreview();
+}
+
+function updateSEOPreview(){
+  const title=document.getElementById('seo-title').value||document.getElementById('art-title').value+' | Gardenidea';
+  const desc=document.getElementById('seo-desc').value;
+  const slug=document.getElementById('art-slug').value;
+  document.getElementById('prev-title').textContent=title.substring(0,60);
+  document.getElementById('prev-desc').textContent=desc.substring(0,160)||'Meta description will appear here...';
+  document.getElementById('prev-url').textContent='gardenidea.online › '+(slug||'article-slug');
+  document.getElementById('slug-preview').textContent=SITE.url+'/'+(slug||'article-slug')+'.html';
+}
+
+function countChars(inputId,max,countId){
+  const el=document.getElementById(inputId),cnt=document.getElementById(countId),len=el.value.length;
+  cnt.textContent=`${len} / ${max}`;
+  cnt.className='char-count'+(len>max?' char-over':len>max*.85?' char-warn':'');
+}
+
+// ── FAQ ──
+function renderFAQList(){
+  document.getElementById('faq-list').innerHTML=faqs.map((f,i)=>`
+    <div class="faq-item-wrap">
+      <button class="faq-remove" onclick="removeFAQ(${i})">×</button>
+      <div class="faq-num">Q${i+1}</div>
+      <input class="faq-q-input" placeholder="Question (how users type it into Google or ChatGPT)" value="${escH(f.q)}" oninput="faqs[${i}].q=this.value">
+      <textarea class="faq-a-input" placeholder="Clear, complete answer (2–4 sentences)" oninput="faqs[${i}].a=this.value">${escH(f.a)}</textarea>
+    </div>`).join('');
+}
+function addFAQ(){faqs.push({q:'',a:''});renderFAQList();document.querySelectorAll('.faq-item-wrap').forEach((el,i,arr)=>{if(i===arr.length-1)el.querySelector('.faq-q-input').focus();});}
+function removeFAQ(i){faqs.splice(i,1);renderFAQList();}
+
+// ── SCHEMA PILLS ──
+document.querySelectorAll('.schema-pill').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const s=btn.dataset.schema;
+    if(activeSchemas.has(s)){activeSchemas.delete(s);btn.classList.remove('on');}
+    else{activeSchemas.add(s);btn.classList.add('on');}
+  });
+});
+function updateSchemaPills(){document.querySelectorAll('.schema-pill').forEach(btn=>btn.classList.toggle('on',activeSchemas.has(btn.dataset.schema)));}
+
+// ── SAVE ──
+function saveArticle(status){
+  const title=document.getElementById('art-title').value.trim();
+  if(!title){toast('Please enter a title','err');return;}
+  const slug=document.getElementById('art-slug').value.trim()||'article-'+title.toLowerCase().replace(/[^a-z0-9]+/g,'-').substring(0,40);
+  const data={
+    title,status:status||document.getElementById('art-status').value,
+    category:document.getElementById('art-category').value,
+    date:document.getElementById('art-date').value,
+    img:document.getElementById('art-img').value,
+    imgAlt:document.getElementById('art-img-alt').value,
+    seoTitle:document.getElementById('seo-title').value||title+' | Gardenidea',
+    seoDesc:document.getElementById('seo-desc').value,
+    slug,keyword:document.getElementById('seo-keyword').value,
+    body:document.getElementById('editor').innerHTML,
+    faqs:[...faqs],schemas:[...activeSchemas],
+  };
+  if(editingId){
+    const idx=articles.findIndex(a=>a.id===editingId);
+    articles[idx]={...articles[idx],...data};
+    toast('Article updated ✓');
+  } else {
+    data.id=Date.now();articles.push(data);editingId=data.id;toast('Article saved ✓');
+  }
+  saveData();renderArticleList();renderDashboard();populateSchemaSelect();
+}
+function saveData(){localStorage.setItem('gi_articles',JSON.stringify(articles));}
+
+// ── SCHEMA GENERATOR ──
+function populateSchemaSelect(){
+  document.getElementById('schema-select').innerHTML='<option value="">-- Select an article --</option>'+
+    articles.map(a=>`<option value="${a.id}">${a.title.substring(0,55)}</option>`).join('');
+}
+function generateSchemaPreview(){
+  const id=parseInt(document.getElementById('schema-select').value);
+  const a=articles.find(x=>x.id===id);
+  if(!a){document.getElementById('schema-output').textContent='Select an article...';return;}
+  const types=[...document.querySelectorAll('.schema-check:checked')].map(c=>c.value);
+  document.getElementById('schema-output').textContent=buildSchemaHTML(a,types);
+}
+function buildSchemaHTML(a,types){
+  const blocks=[];
+  if(types.includes('Article')){
+    blocks.push(`<script type="application/ld+json">\n${JSON.stringify({"@context":"https://schema.org","@type":"Article","headline":a.title,"description":a.seoDesc,"author":{"@type":"Organization","name":"Gardenidea"},"publisher":{"@type":"Organization","name":"Gardenidea","url":SITE.url},"datePublished":a.date,"dateModified":a.date,"image":a.img,"mainEntityOfPage":{"@type":"WebPage","@id":`${SITE.url}/${a.slug}.html`}},null,2)}\n<\/script>`);
+  }
+  if(types.includes('FAQPage')&&a.faqs&&a.faqs.length){
+    blocks.push(`<script type="application/ld+json">\n${JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","mainEntity":a.faqs.map(f=>({"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}}))},null,2)}\n<\/script>`);
+  }
+  if(types.includes('BreadcrumbList')){
+    blocks.push(`<script type="application/ld+json">\n${JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE.url},{"@type":"ListItem","position":2,"name":a.category,"item":SITE.url},{"@type":"ListItem","position":3,"name":a.title,"item":`${SITE.url}/${a.slug}.html`}]},null,2)}\n<\/script>`);
+  }
+  return blocks.join('\n\n');
+}
+function copySchema(){navigator.clipboard.writeText(document.getElementById('schema-output').textContent).then(()=>toast('Schema copied ✓'));}
+function downloadSchema(){download('schema-markup.html',document.getElementById('schema-output').textContent);}
+
+// ── HTML EXPORT — with UNIFIED NAVBAR ──
+const NAVBAR_CSS = `
+<style>
+.gd-header{position:sticky;top:0;z-index:9999;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:1px solid #e9f0e3;transition:box-shadow .25s;}
+.gd-header.scrolled{box-shadow:0 2px 16px rgba(0,0,0,.07);}
+.gd-nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;}
+.gd-logo{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:#14532d;text-decoration:none;white-space:nowrap;}
+.gd-logo span{color:#16a34a;}
+.gd-nav{display:flex;align-items:center;gap:0;list-style:none;}
+.gd-nav a{display:block;padding:0 10px;font-size:.67rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#6b7280;text-decoration:none;line-height:56px;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.gd-nav a:hover{color:#14532d;border-bottom-color:#14532d;}
+.gd-burger{display:none;background:none;border:none;cursor:pointer;padding:8px;color:#374151;}
+.gd-drawer{display:none;position:absolute;top:56px;left:0;right:0;background:#fff;border-bottom:1px solid #e9f0e3;padding:12px 20px 16px;box-shadow:0 8px 24px rgba(0,0,0,.08);}
+.gd-drawer.open{display:block;}
+.gd-drawer a{display:block;padding:10px 0;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#374151;text-decoration:none;border-bottom:1px solid #f3f4f6;}
+.gd-drawer a:last-child{border-bottom:none;}
+@media(max-width:900px){.gd-nav{display:none;}.gd-burger{display:block;}}
+</style>`;
+
+const NAVBAR_HTML = `<header class="gd-header">
+  <div class="gd-nav-inner">
+    <a href="index.html" class="gd-logo">Garden<span>idea</span></a>
+    <nav><ul class="gd-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="cat-lawn-garden.html">Lawn &amp; Garden</a></li>
+      <li><a href="cat-home-decor.html">Home Decor</a></li>
+      <li><a href="cat-wedding-decor.html">Wedding Decor</a></li>
+      <li><a href="cat-backyard.html">Backyard</a></li>
+      <li><a href="cat-aesthetic.html">Aesthetic</a></li>
+      <li><a href="cat-outdoor-living.html">Outdoor Living</a></li>
+      <li><a href="cat-string-lights.html">String Lights</a></li>
+    </ul></nav>
+    <button id="gdBurger" class="gd-burger" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <nav id="gdDrawer" class="gd-drawer">
+    <a href="index.html">Home</a>
+    <a href="cat-lawn-garden.html">Lawn &amp; Garden</a>
+    <a href="cat-home-decor.html">Home Decor</a>
+    <a href="cat-wedding-decor.html">Wedding Decor</a>
+    <a href="cat-backyard.html">Backyard</a>
+    <a href="cat-aesthetic.html">Aesthetic</a>
+    <a href="cat-outdoor-living.html">Outdoor Living</a>
+    <a href="cat-string-lights.html">String Lights</a>
+  </nav>
+</header>`;
+
+const NAVBAR_SCRIPT = `<script>
+(function(){
+  var btn=document.getElementById('gdBurger'),drawer=document.getElementById('gdDrawer'),header=document.querySelector('.gd-header');
+  if(btn&&drawer){btn.addEventListener('click',function(){drawer.classList.toggle('open');});document.addEventListener('click',function(e){if(!header.contains(e.target))drawer.classList.remove('open');});}
+  if(header){window.addEventListener('scroll',function(){header.classList.toggle('scrolled',window.scrollY>10);},{passive:true});}
+})();
+<\/script>`;
+
+function exportHTML(){
+  saveArticle(document.getElementById('art-status').value);
+  const a=articles.find(x=>x.id===editingId);
+  if(a) buildAndDownloadHTML(a);
+}
+function exportHTMLById(id){const a=articles.find(x=>x.id===id);if(a) buildAndDownloadHTML(a);}
+
+function buildAndDownloadHTML(a){
+  const schemaHTML=buildSchemaHTML(a,a.schemas||['Article','FAQPage']);
+  const ogTags=`  <meta property="og:title" content="${escH(a.seoTitle)}">
+  <meta property="og:description" content="${escH(a.seoDesc)}">
+  <meta property="og:image" content="${a.img}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="${SITE.url}/${a.slug}.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escH(a.seoTitle)}">
+  <meta name="twitter:description" content="${escH(a.seoDesc)}">
+  <meta name="twitter:image" content="${a.img}">`;
+
+  const faqHTML=a.faqs&&a.faqs.length?`
+<section style="margin-top:3rem;padding-top:2rem;border-top:1px solid #f0f0f0;">
+  <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#1a3a1a;margin-bottom:1.5rem;">Frequently Asked Questions</h2>
+  ${a.faqs.map(f=>`<div style="border-bottom:1px solid #f0f0f0;padding:1rem 0;"><div style="font-weight:600;color:#1a1a1a;font-size:.95rem;margin-bottom:.4rem;">${f.q}</div><div style="color:#555;font-size:.9rem;line-height:1.75;">${f.a}</div></div>`).join('')}
+</section>`:'';
+
+  const related=articles.filter(x=>x.id!==a.id&&x.status==='published').slice(0,4);
+  const relatedHTML=related.map(r=>`<li><a href="${r.slug}.html" style="color:#555;text-decoration:none;font-size:.85rem;">🌿 ${r.title}</a></li>`).join('');
+
+  const html=`<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="${escH(a.seoDesc)}">
+<meta name="keywords" content="${escH(a.keyword)}">
+${ogTags}
+<title>${escH(a.seoTitle)}</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=${SITE.ga}"><\/script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${SITE.ga}');<\/script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+${schemaHTML}
+${NAVBAR_CSS}
+<style>
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;}
+h1,h2,h3{font-family:'Playfair Display',serif;}
+.ad-slot{background:#f9f9f9;border:1px dashed #ddd;text-align:center;padding:12px;font-size:10px;color:#bbb;border-radius:6px;}
+.prose h2{font-family:'Playfair Display',serif;font-size:1.35rem;font-weight:700;color:#1a3a1a;margin:2rem 0 .6rem;}
+.prose h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:#2d6a2d;margin:1.5rem 0 .45rem;}
+.prose p{font-size:.95rem;color:#333;line-height:1.85;margin-bottom:1rem;}
+.prose ul,.prose ol{margin:.5rem 0 1rem 1.5rem;font-size:.93rem;color:#333;line-height:1.85;}
+.prose blockquote{border-left:4px solid #c8a44a;padding:.75rem 1rem;margin:1.5rem 0;background:#fffbf0;border-radius:0 8px 8px 0;font-style:italic;}
+</style>
+</head>
+<body>
+${NAVBAR_HTML}
+<div style="max-width:1200px;margin:0 auto;padding:0 20px 12px;">
+  <div class="ad-slot" style="min-height:90px;"><!-- ezoic-pub-ad-placeholder-101 --></div>
+</div>
+<div style="max-width:1200px;margin:0 auto;padding:0 20px 48px;">
+  <div style="display:grid;grid-template-columns:1fr 300px;gap:40px;">
+    <main>
+      <nav style="font-size:.7rem;text-transform:uppercase;letter-spacing:2px;color:#aaa;margin-bottom:1.25rem;font-weight:600;">
+        <a href="index.html" style="color:#aaa;text-decoration:none;">Home</a> › <span>${escH(a.category)}</span>
+      </nav>
+      <span style="display:inline-block;background:#f0fdf4;color:#15803d;font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;padding:3px 12px;border-radius:20px;margin-bottom:1rem;">${escH(a.category)}</span>
+      <h1 style="font-family:'Playfair Display',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;color:#1a3a1a;line-height:1.2;margin-bottom:1rem;">${escH(a.title)}</h1>
+      <div style="display:flex;gap:1rem;font-size:.7rem;color:#aaa;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #f0f0f0;flex-wrap:wrap;">
+        <span>📅 ${a.date}</span><span>✍️ Gardenidea</span><span>⏱ 8 min read</span>
+      </div>
+      ${a.img?`<img src="${a.img}" alt="${escH(a.imgAlt||a.title)}" style="width:100%;border-radius:16px;height:420px;object-fit:cover;margin-bottom:2rem;" loading="eager">`:''}
+      <div class="ad-slot" style="min-height:90px;margin-bottom:2rem;"><!-- ezoic-pub-ad-placeholder-102 --></div>
+      <div class="prose">${a.body||''}</div>
+      <div class="ad-slot" style="min-height:90px;margin:2rem 0;"><!-- ezoic-pub-ad-placeholder-103 --></div>
+      ${faqHTML}
+    </main>
+    <aside>
+      <div style="position:sticky;top:72px;display:flex;flex-direction:column;gap:1.25rem;">
+        <div class="ad-slot" style="min-height:250px;"><!-- ezoic-pub-ad-placeholder-106 --></div>
+        ${related.length?`<div style="background:#f9fafb;border-radius:16px;padding:1.15rem;">
+          <h3 style="font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#374151;margin-bottom:.9rem;">More Articles</h3>
+          <ul style="list-style:none;">${relatedHTML}</ul>
+        </div>`:''}
+        <div class="ad-slot" style="min-height:250px;"><!-- ezoic-pub-ad-placeholder-108 --></div>
+      </div>
+    </aside>
+  </div>
+</div>
+<footer style="background:#fff;border-top:1px solid #f3f4f6;padding:3rem 20px 1.5rem;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2rem;margin-bottom:2rem;">
+    <div style="grid-column:span 2;">
+      <a href="index.html" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#1a3a1a;text-decoration:none;display:block;margin-bottom:.75rem;">Gardenidea</a>
+      <p style="color:#6b7280;font-size:.85rem;line-height:1.7;">Garden inspiration, home decor, floral crafts, wedding ideas and outdoor living.</p>
+    </div>
+    <div>
+      <h4 style="font-size:.63rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#111;margin-bottom:1rem;">Categories</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+        <li><a href="cat-lawn-garden.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">Lawn & Garden</a></li>
+        <li><a href="cat-home-decor.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">Home Decor</a></li>
+        <li><a href="cat-wedding-decor.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">Wedding Decor</a></li>
+        <li><a href="cat-outdoor-living.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">Outdoor Living</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="font-size:.63rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#111;margin-bottom:1rem;">Info</h4>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;">
+        <li><a href="about.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">About</a></li>
+        <li><a href="privacy-policy.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">Privacy Policy</a></li>
+        <li><a href="contact.html" style="font-size:.73rem;color:#6b7280;text-decoration:none;">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="border-top:1px solid #f9fafb;padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#9ca3af;max-width:1200px;margin:0 auto;">
+    <p>© 2026 Gardenidea. All Rights Reserved.</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="${SITE.pinterest}" style="color:#9ca3af;text-decoration:none;" target="_blank">Pinterest</a>
+      <a href="privacy-policy.html" style="color:#9ca3af;text-decoration:none;">Privacy</a>
+      <a href="contact.html" style="color:#9ca3af;text-decoration:none;">Contact</a>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:.66rem;color:#d1d5db;margin-top:1rem;max-width:1200px;margin:1rem auto 0;">Gardenidea earns through display advertising. Content is independent and editorial.</p>
+</footer>
+${NAVBAR_SCRIPT}
+</body>
+</html>`;
+
+  download(a.slug+'.html',html);
+  toast(a.slug+'.html exported ✓');
+}
+
+// ── SITEMAP ──
+function generateSitemap(){
+  const pub=articles.filter(a=>a.status==='published');
+  const today=new Date().toISOString().split('T')[0];
+  const staticUrls=['','/about.html','/privacy-policy.html','/contact.html','/cat-lawn-garden.html','/cat-home-decor.html','/cat-wedding-decor.html','/cat-backyard.html','/cat-aesthetic.html','/cat-outdoor-living.html','/cat-string-lights.html'].map(p=>`  <url>\n    <loc>${SITE.url}${p||'/'}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>${p?'monthly':'weekly'}</changefreq>\n    <priority>${p?'0.7':'1.0'}</priority>\n  </url>`);
+  const artUrls=pub.map(a=>`  <url>\n    <loc>${SITE.url}/${a.slug}.html</loc>\n    <lastmod>${a.date||today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>`);
+  const xml=`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[...staticUrls,...artUrls].join('\n')}\n</urlset>`;
+  const el=document.getElementById('sitemap-out');if(el)el.textContent=xml;return xml;
+}
+function downloadSitemap(){download('sitemap.xml',generateSitemap());}
+function copySitemap(){navigator.clipboard.writeText(generateSitemap()).then(()=>toast('Sitemap copied ✓'));}
+function downloadRobots(){download('robots.txt',document.getElementById('robots-out').textContent);}
+function copyRobots(){navigator.clipboard.writeText(document.getElementById('robots-out').textContent).then(()=>toast('robots.txt copied ✓'));}
+
+// ── AI ASSISTANT ──
+async function aiGenerate(type){
+  const key=document.getElementById('ai-key').value.trim();
+  if(!key){toast('Enter your Claude API key first','err');return;}
+  const title=document.getElementById('art-title').value.trim();
+  if(!title&&type!=='faq'){toast('Enter an article title first','err');return;}
+  const keyword=document.getElementById('seo-keyword').value.trim();
+  const category=document.getElementById('art-category').value;
+  const prompts={
+    seo:`SEO expert for Gardenidea (gardenidea.online), a garden & home decor blog.\n\nArticle: "${title}"\nKeyword: "${keyword||'garden ideas'}"\nCategory: ${category}\n\nGenerate:\nSEO TITLE: (max 60 chars, keyword first, end with | Gardenidea)\nMETA DESC: (120–160 chars, keyword included, compelling)`,
+    faq:`Generate 5 FAQ questions for article: "${title}" (${category} blog).\nWrite exactly how users type into Google/ChatGPT. Answers: 2–3 sentences.\nKeyword: "${keyword||'garden ideas'}"\n\nFormat:\nQ1: [question]\nA1: [answer]\n(repeat)`,
+    intro:`Write opening paragraph (3–4 sentences) for "${title}" on Gardenidea garden blog. Target: Pinterest users US/Europe. Warm, informative, SEO-friendly. Include keyword: "${keyword||title}". No word "delve".`,
+    outline:`Article outline for "${title}" — garden/home decor blog.\n5–7 H2 headings, 2–3 H3 under each, brief note per section.\nKeyword: "${keyword||'garden ideas'}"`,
+    pinterest:`Pinterest pin description for "${title}" (${category}).\n150–300 chars, hook first, 2–3 keywords, CTA at end, 5 hashtags on new line.\nKeyword: "${keyword||'garden ideas'}"`
+  };
+  document.getElementById('ai-loading').style.display='flex';
+  document.getElementById('ai-output').style.display='none';
+  document.getElementById('ai-apply').style.display='none';
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:prompts[type]}]})
+    });
+    const data=await res.json();
+    if(data.error) throw new Error(data.error.message);
+    lastAIOutput=data.content[0].text; lastAIType=type;
+    document.getElementById('ai-output').textContent=lastAIOutput;
+    document.getElementById('ai-output').style.display='block';
+    document.getElementById('ai-apply').style.display='block';
+  }catch(e){
+    document.getElementById('ai-output').textContent='Error: '+e.message;
+    document.getElementById('ai-output').style.display='block';
+    toast('AI error: '+e.message.substring(0,60),'err');
+  }
+  document.getElementById('ai-loading').style.display='none';
+}
+
+function applyAIOutput(){
+  const out=lastAIOutput;
+  if(lastAIType==='seo'){
+    const tm=out.match(/SEO TITLE:\s*(.+)/i),dm=out.match(/META DESC:\s*(.+)/i);
+    if(tm){document.getElementById('seo-title').value=tm[1].trim();countChars('seo-title',60,'seo-title-count');}
+    if(dm){document.getElementById('seo-desc').value=dm[1].trim();countChars('seo-desc',160,'seo-desc-count');}
+    updateSEOPreview();toast('SEO fields updated ✓');
+  }else if(lastAIType==='faq'){
+    const pairs=[...out.matchAll(/Q\d+:\s*(.+)\nA\d+:\s*([\s\S]+?)(?=\nQ\d+:|$)/gi)];
+    pairs.forEach(m=>faqs.push({q:m[1].trim(),a:m[2].trim()}));
+    renderFAQList();toast(pairs.length+' FAQs added ✓');
+  }else if(lastAIType==='intro'){
+    document.getElementById('editor').innerHTML='<p>'+out.trim()+'</p>'+document.getElementById('editor').innerHTML;
+    toast('Intro added ✓');
+  }else if(lastAIType==='outline'){
+    toast('Copy outline from panel and paste into editor');
+  }else if(lastAIType==='pinterest'){
+    navigator.clipboard.writeText(out).then(()=>toast('Pinterest description copied ✓'));
+  }
+}
+
+// ── SETTINGS ──
+function loadSettings(){
+  document.getElementById('set-name').value=SITE.name;
+  document.getElementById('set-url').value=SITE.url;
+  document.getElementById('set-email').value=SITE.email;
+  document.getElementById('set-pinterest').value=SITE.pinterest;
+  document.getElementById('set-ga').value=SITE.ga;
+}
+function saveSettings(){
+  SITE.name=document.getElementById('set-name').value;
+  SITE.url=document.getElementById('set-url').value;
+  SITE.email=document.getElementById('set-email').value;
+  SITE.pinterest=document.getElementById('set-pinterest').value;
+  SITE.ga=document.getElementById('set-ga').value;
+  localStorage.setItem('gi_site',JSON.stringify(SITE));
+  toast('Settings saved ✓');
+}
+
+// ── DATA ──
+function exportData(){download('gardenidea-backup.json',JSON.stringify({articles,site:SITE},null,2));toast('Data exported ✓');}
+function importData(){document.getElementById('import-file').click();}
+function doImport(input){
+  const file=input.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    try{
+      const data=JSON.parse(e.target.result);
+      if(data.articles)articles=data.articles;
+      if(data.site)Object.assign(SITE,data.site);
+      saveData();renderArticleList();renderDashboard();loadSettings();toast('Data imported ✓');
+    }catch(err){toast('Invalid JSON file','err');}
+  };
+  reader.readAsText(file);
+}
+
+// ── UTILS ──
+function download(name,content){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type:'text/plain'}));
+  a.download=name;a.click();
+}
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast show'+(type?' '+type:'');
+  clearTimeout(t._timer);t._timer=setTimeout(()=>t.className='toast',3000);
+}
+function escH(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ── DEFAULT ARTICLES ──
+function getDefaultArticles(){return[
+  {id:1,status:'published',title:'Cottagecore Garden Aesthetic Ideas',slug:'article-cottage-garden',seoTitle:'Cottagecore Garden Aesthetic Ideas | Gardenidea',seoDesc:'Complete guide to creating a cottagecore garden — plants, layout, colour palettes, and styling tips for any size garden.',keyword:'cottage garden aesthetic ideas',category:'Lawn & Garden',date:'2025-01-01',img:'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1200',imgAlt:'Beautiful cottagecore garden',body:'<h2>Introduction</h2><p>A cottagecore garden feels wild, romantic, and effortlessly natural...</p>',faqs:[{q:'What is a cottagecore garden aesthetic?',a:'A cottagecore garden celebrates natural beauty with overflowing flower beds, climbing roses, winding stone paths, vintage pots, and a wild romantic atmosphere.'},{q:'What plants are best for a cottage garden?',a:'English roses, lavender, foxglove, sweet peas, hollyhocks, and catmint — all low-maintenance and beautiful for years.'},{q:'How long does it take to establish a cottage garden?',a:'Most cottage gardens look truly established in their third year. Year one plants settle, year two they spread, year three the abundance emerges.'}],schemas:['Article','FAQPage']},
+  {id:2,status:'published',title:'50 Backyard Garden Ideas on a Budget',slug:'article-backyard-ideas',seoTitle:'50 Backyard Garden Ideas on a Budget | Gardenidea',seoDesc:'Transform your backyard with 50 budget-friendly garden ideas — raised beds, string lights, patio decor and more.',keyword:'backyard garden ideas budget',category:'Backyard',date:'2025-01-01',img:'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=1200',imgAlt:'Beautiful backyard garden',body:'<h2>Start With a Great Lawn</h2><p>A lush lawn is the foundation of any beautiful backyard...</p>',faqs:[{q:'How can I transform my backyard on a budget?',a:'Start with mulched garden beds, add solar string lights, plant perennials, and use raised beds made from inexpensive timber. These three changes alone make a dramatic difference.'}],schemas:['Article','FAQPage']},
+  {id:3,status:'published',title:'DIY Wedding Bouquet Ideas That Save $500+',slug:'article-wedding-bouquet',seoTitle:'DIY Wedding Bouquet Ideas That Save $500+ | Gardenidea',seoDesc:'Step-by-step guide to making your own stunning bridal bouquet with ribbon roses — save $300 to $600.',keyword:'DIY wedding bouquet ribbon roses',category:'Wedding Decor',date:'2025-01-01',img:'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=1200',imgAlt:'Beautiful DIY wedding bouquet',body:'<h2>Why Make Your Own Bouquet?</h2><p>A ribbon rose bridal bouquet costs $30–60 in materials...</p>',faqs:[{q:'How far in advance can I make a ribbon rose wedding bouquet?',a:'Weeks or even months in advance. Store away from direct sunlight and it will look perfect on your wedding day.'},{q:'How many ribbon roses for a bridal bouquet?',a:'For a standard round posy: 18–24 roses in a mix of sizes — large (28" ribbon), medium (20"), small (12").'}],schemas:['Article','FAQPage']},
+  {id:4,status:'published',title:'How to Make Ribbon Roses at Home',slug:'article-ribbon-roses',seoTitle:"How to Make Ribbon Roses — Beginner's Guide | Gardenidea",seoDesc:'Complete step-by-step guide to making ribbon roses — materials, technique, and tips for stunning everlasting bouquets.',keyword:'how to make ribbon roses at home',category:'Wedding Decor',date:'2025-01-01',img:'https://images.unsplash.com/photo-1495908333425-29a1e0918c5f?auto=format&fit=crop&q=80&w=1200',imgAlt:'Handmade ribbon roses',body:'<h2>What You\'ll Need</h2><p>Satin ribbon (1–2 inches wide), scissors, hot glue gun...</p>',faqs:[{q:'What is the easiest way to make ribbon roses for beginners?',a:'The fold-and-roll method with a hot glue gun. Cut 18–20 inches of satin ribbon, fold at 45 degrees, roll tightly for the bud, fold and rotate to build petals.'},{q:'How long does it take to make ribbon roses?',a:'Your first rose takes 10–20 minutes. By the sixth rose most people make them in 5–8 minutes.'}],schemas:['Article','FAQPage']},
+  {id:5,status:'published',title:'Cozy Outdoor Living Space Ideas',slug:'article-outdoor-living',seoTitle:'Cozy Outdoor Living Space Ideas | Gardenidea',seoDesc:'Transform any patio or garden into a cozy outdoor room — furniture, fire pits, lighting, rugs, and layout tips.',keyword:'outdoor living space ideas',category:'Outdoor Living',date:'2025-01-01',img:'https://images.unsplash.com/photo-1557429287-b2e26467fc2b?auto=format&fit=crop&q=80&w=1200',imgAlt:'Cozy outdoor patio',body:'<h2>Choosing the Right Seating</h2><p>A weatherproof outdoor sofa is the single best investment...</p>',faqs:[{q:'How do I make a small patio feel like an outdoor room?',a:'Define the space with an outdoor rug, add overhead string lights to create a visual ceiling, and choose seating that faces inward.'}],schemas:['Article','FAQPage']},
+  {id:6,status:'published',title:'Farmhouse Home Decor Ideas on Any Budget',slug:'article-farmhouse-decor',seoTitle:'Farmhouse Home Decor Ideas on Any Budget | Gardenidea',seoDesc:'Room-by-room farmhouse styling guide with colour palettes, DIY projects, and budget shopping tips for 2026.',keyword:'farmhouse home decor ideas',category:'Home Decor',date:'2025-01-01',img:'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&q=80&w=1200',imgAlt:'Cozy farmhouse living room',body:'<h2>The Farmhouse Colour Palette</h2><p>Off-white, antique cream, warm grey and natural wood tones...</p>',faqs:[{q:'Is farmhouse style going out of fashion in 2026?',a:'No — the core elements (natural materials, warm neutrals) are timeless. The 2026 farmhouse style adds vintage finds and handmade pieces.'}],schemas:['Article','FAQPage']},
+  {id:7,status:'published',title:'Outdoor String Light Ideas That Create Instant Magic',slug:'article-string-lights',seoTitle:'Outdoor String Light Ideas for Garden & Patio | Gardenidea',seoDesc:'Solar vs plug-in string lights, hanging methods, bulb types, and creative setups for magical outdoor evenings.',keyword:'outdoor string light ideas',category:'String Lights',date:'2025-01-01',img:'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?auto=format&fit=crop&q=80&w=1200',imgAlt:'Warm outdoor string lights',body:'<h2>Solar vs Plug-In</h2><p>Solar lights are wireless and free to run...</p>',faqs:[{q:'What colour temperature is best for outdoor string lights?',a:'Choose warm white (2700K–3000K) for a magical romantic glow. Cool white (5000K+) looks harsh outdoors.'},{q:'Solar or plug-in — which is better?',a:'Solar for wireless flexibility; plug-in for brighter, more reliable light in main entertaining areas.'}],schemas:['Article','FAQPage']},
+];}
+</script>
+</body>
+</html>

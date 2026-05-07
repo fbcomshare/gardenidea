@@ -1,56 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact Us | GardenBloom</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z94RGGLMY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z94RGGLMY1');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact Gardenidea — questions, feedback, or collaboration inquiries. We'd love to hear from you.">
+<title>Contact Us | Gardenidea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-:root{--gd:#1a3a1a;--gm:#2d6a2d;--gp:#e8f5e8;--gold:#c8a44a;--cream:#faf8f0;--white:#fff;--border:#e0ddd0;--fh:'Playfair Display',serif;--fb:'DM Sans',sans-serif;}
-*{margin:0;padding:0;box-sizing:border-box;}body{font-family:var(--fb);background:var(--cream);color:#1c1c1c;line-height:1.8;}
-header{background:var(--gd);padding:1rem 1.5rem;border-bottom:3px solid var(--gold);display:flex;align-items:center;justify-content:space-between;}
-.logo{font-family:var(--fh);font-size:1.4rem;font-weight:700;color:#fff;text-decoration:none;}.logo em{color:var(--gold);font-style:normal;}
-nav a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.82rem;margin-left:1.2rem;}
-.hero{background:var(--gd);color:#fff;padding:3.5rem 1.5rem;text-align:center;}
-.hero h1{font-family:var(--fh);font-size:2.2rem;margin-bottom:.5rem;}
-.hero p{opacity:.75;font-size:.95rem;}
-.content{max-width:900px;margin:0 auto;padding:3rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
-.form-section h2{font-family:var(--fh);font-size:1.5rem;color:var(--gd);margin-bottom:1.25rem;}
-.form-group{margin-bottom:1.25rem;}
-label{display:block;font-size:.85rem;font-weight:600;color:var(--gd);margin-bottom:.35rem;}
-input,textarea,select{width:100%;padding:.75rem 1rem;border:1px solid var(--border);border-radius:8px;font-family:var(--fb);font-size:.9rem;background:var(--white);color:#1c1c1c;outline:none;transition:border-color .2s;}
-input:focus,textarea:focus{border-color:var(--gm);}
+:root{--primary-color:#2d4a22;--font-serif:'Playfair Display',serif;}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;}
+h1,h2,h3,.serif{font-family:var(--font-serif);}
+.nav-link{transition:all .3s ease;position:relative;}
+.nav-link::after{content:'';position:absolute;width:0;height:2px;bottom:-2px;left:0;background:var(--primary-color);transition:width .3s ease;}
+.nav-link:hover::after{width:100%;}
+input,textarea,select{width:100%;padding:.75rem 1rem;border:1px solid #e5e7eb;border-radius:8px;font-family:'Inter',sans-serif;font-size:.9rem;background:#fff;color:#1a1a1a;outline:none;transition:border-color .2s;}
+input:focus,textarea:focus,select:focus{border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.1);}
 textarea{min-height:140px;resize:vertical;}
-.submit-btn{background:var(--gd);color:#fff;border:none;padding:.85rem 2rem;border-radius:30px;font-family:var(--fb);font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s;width:100%;}
-.submit-btn:hover{background:var(--gm);}
-.info-section h2{font-family:var(--fh);font-size:1.5rem;color:var(--gd);margin-bottom:1.25rem;}
-.info-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.25rem;margin-bottom:1rem;}
-.info-card .icon{font-size:1.5rem;margin-bottom:.5rem;}
-.info-card h3{font-family:var(--fh);font-size:.95rem;color:var(--gd);margin-bottom:.25rem;}
-.info-card p{font-size:.85rem;color:#555;margin:0;}
-.info-card a{color:var(--gm);text-decoration:none;}
-footer{background:#0d1a0d;color:rgba(255,255,255,.55);text-align:center;padding:1.5rem;font-size:.8rem;margin-top:3rem;}footer a{color:var(--gold);text-decoration:none;}
-@media(max-width:768px){.content{grid-template-columns:1fr;}nav{display:none;}}
+label{display:block;font-size:.82rem;font-weight:600;color:#374151;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.05em;}
 </style>
 </head>
 <body>
-<header><a href="index.html" class="logo">Garden<em>Bloom</em></a><nav><a href="index.html">Home</a><a href="digital-guides.html">Shop Guides</a><a href="about.html">About</a></nav></header>
-<div class="hero">
-  <h1>Get in Touch</h1>
-  <p>Questions, feedback, or collaboration inquiries — we'd love to hear from you.</p>
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="gi-header">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold tracking-tighter serif text-green-900" style="font-family:'Playfair Display',serif;">
+      Garden<span class="text-green-600">idea</span>
+    </a>
+    <nav class="hidden lg:flex space-x-8 items-center font-medium uppercase text-[11px] tracking-[0.2em] text-gray-500">
+      <a href="index.html" class="nav-link hover:text-green-900 transition">Home</a>
+      <a href="cat-lawn-garden.html" class="nav-link hover:text-green-900 transition">Lawn &amp; Garden</a>
+      <a href="cat-home-decor.html" class="nav-link hover:text-green-900 transition">Home Decor</a>
+      <a href="cat-wedding-decor.html" class="nav-link hover:text-green-900 transition">Wedding Decor</a>
+      <a href="cat-backyard.html" class="nav-link hover:text-green-900 transition">Backyard</a>
+      <a href="cat-aesthetic.html" class="nav-link hover:text-green-900 transition">Aesthetic</a>
+      <a href="cat-plants.html" class="nav-link hover:text-green-900 transition">Plants</a>
+      <a href="cat-string-lights.html" class="nav-link hover:text-green-900 transition">Lightings</a>
+    </nav>
+    <div class="flex items-center space-x-2">
+      <button class="p-2 text-gray-600 hover:text-green-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </button>
+      <button id="menu-toggle" class="lg:hidden p-2 text-gray-700 hover:text-green-700 transition focus:outline-none">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 shadow-lg">
+    <nav class="flex flex-col px-6 py-4 space-y-1">
+      <a href="index.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Home</a>
+      <a href="cat-lawn-garden.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Lawn &amp; Garden</a>
+      <a href="cat-home-decor.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Home Decor</a>
+      <a href="cat-wedding-decor.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Wedding Decor</a>
+      <a href="cat-backyard.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Backyard</a>
+      <a href="cat-aesthetic.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Aesthetic</a>
+      <a href="cat-plants.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Plants</a>
+      <a href="cat-string-lights.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Lightings</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Page Hero -->
+<div class="bg-green-900 text-white py-16 px-6 text-center">
+  <p class="text-xs font-bold uppercase tracking-widest text-green-300 mb-3"><a href="index.html" class="hover:text-white transition">Home</a> › Contact</p>
+  <h1 class="text-4xl font-bold serif mb-3" style="font-family:'Playfair Display',serif;">Get in Touch</h1>
+  <p class="text-green-200 max-w-md mx-auto text-sm leading-relaxed">Questions, feedback, or collaboration inquiries — we'd love to hear from you.</p>
 </div>
-<div class="content">
-  <div class="form-section">
-    <h2>Send Us a Message</h2>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <div class="form-group">
+
+<!-- Content -->
+<main class="max-w-5xl mx-auto px-6 py-14 grid grid-cols-1 lg:grid-cols-2 gap-12">
+
+  <!-- Contact Form -->
+  <div>
+    <h2 class="text-2xl font-bold serif text-green-900 mb-6" style="font-family:'Playfair Display',serif;">Send Us a Message</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-5">
+      <div>
         <label for="name">Your Name</label>
         <input type="text" id="name" name="name" placeholder="Jane Smith" required>
       </div>
-      <div class="form-group">
+      <div>
         <label for="email">Email Address</label>
         <input type="email" id="email" name="email" placeholder="jane@email.com" required>
       </div>
-      <div class="form-group">
+      <div>
         <label for="subject">Subject</label>
         <select id="subject" name="subject">
           <option value="general">General Question</option>
@@ -60,42 +98,103 @@ footer{background:#0d1a0d;color:rgba(255,255,255,.55);text-align:center;padding:
           <option value="other">Other</option>
         </select>
       </div>
-      <div class="form-group">
+      <div>
         <label for="message">Message</label>
         <textarea id="message" name="message" placeholder="Tell us how we can help..." required></textarea>
       </div>
-      <button type="submit" class="submit-btn">Send Message →</button>
+      <button type="submit" class="w-full bg-green-900 hover:bg-green-800 text-white font-bold py-3 px-6 rounded-full transition text-sm tracking-wide">Send Message →</button>
     </form>
   </div>
-  <div class="info-section">
-    <h2>Other Ways to Reach Us</h2>
-    <div class="info-card">
-      <div class="icon">📧</div>
-      <h3>Email</h3>
-      <p><a href="mailto:hello@gardenbloomblog.com">hello@gardenbloomblog.com</a></p>
-    </div>
-    <div class="info-card">
-      <div class="icon">📌</div>
-      <h3>Pinterest</h3>
-      <p><a href="https://pinterest.com/10MinuteFacts" target="_blank">@10MinuteFacts</a> — Follow us for daily garden & craft inspiration</p>
-    </div>
-    <div class="info-card">
-      <div class="icon">⏱️</div>
-      <h3>Response Time</h3>
-      <p>We aim to respond to all messages within 48 hours on business days.</p>
-    </div>
-    <div class="info-card">
-      <div class="icon">🛒</div>
-      <h3>Guide Support</h3>
-      <p>For questions about digital guides, please email with your order confirmation number and we'll help right away.</p>
-    </div>
-    <div class="info-card">
-      <div class="icon">📝</div>
-      <h3>Useful Links</h3>
-      <p><a href="privacy-policy.html">Privacy Policy</a> · <a href="disclaimer.html">Disclaimer</a> · <a href="about.html">About Us</a></p>
+
+  <!-- Info Cards -->
+  <div>
+    <h2 class="text-2xl font-bold serif text-green-900 mb-6" style="font-family:'Playfair Display',serif;">Other Ways to Reach Us</h2>
+    <div class="space-y-4">
+      <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+        <div class="text-2xl mb-2">📧</div>
+        <h3 class="font-bold text-green-900 text-sm serif mb-1" style="font-family:'Playfair Display',serif;">Email</h3>
+        <p class="text-gray-500 text-sm"><a href="mailto:hello@gardenidea.online" class="text-green-700 hover:underline">hello@gardenidea.online</a></p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+        <div class="text-2xl mb-2">📌</div>
+        <h3 class="font-bold text-green-900 text-sm serif mb-1" style="font-family:'Playfair Display',serif;">Pinterest</h3>
+        <p class="text-gray-500 text-sm"><a href="https://pinterest.com/10MinuteFacts" target="_blank" rel="noopener" class="text-green-700 hover:underline">@10MinuteFacts</a> — Follow us for daily garden &amp; craft inspiration</p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+        <div class="text-2xl mb-2">⏱️</div>
+        <h3 class="font-bold text-green-900 text-sm serif mb-1" style="font-family:'Playfair Display',serif;">Response Time</h3>
+        <p class="text-gray-500 text-sm">We aim to respond to all messages within 48 hours on business days.</p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+        <div class="text-2xl mb-2">🛒</div>
+        <h3 class="font-bold text-green-900 text-sm serif mb-1" style="font-family:'Playfair Display',serif;">Guide Support</h3>
+        <p class="text-gray-500 text-sm">For questions about digital guides, please email with your order confirmation number and we'll help right away.</p>
+      </div>
+      <div class="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+        <div class="text-2xl mb-2">📝</div>
+        <h3 class="font-bold text-green-900 text-sm serif mb-1" style="font-family:'Playfair Display',serif;">Useful Links</h3>
+        <p class="text-gray-500 text-sm">
+          <a href="privacy-policy.html" class="text-green-700 hover:underline">Privacy Policy</a> ·
+          <a href="disclaimer.html" class="text-green-700 hover:underline">Disclaimer</a> ·
+          <a href="about.html" class="text-green-700 hover:underline">About Us</a>
+        </p>
+      </div>
     </div>
   </div>
-</div>
-<footer>© 2025 GardenBloom | <a href="index.html">Home</a> · <a href="privacy-policy.html">Privacy</a> · <a href="disclaimer.html">Disclaimer</a></footer>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-gray-100 pt-16 pb-10">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div class="col-span-1 md:col-span-2">
+        <a href="index.html" class="text-2xl font-bold serif text-green-900 mb-4 block" style="font-family:'Playfair Display',serif;">Gardenidea</a>
+        <p class="text-gray-500 max-w-sm leading-relaxed text-sm">Garden inspiration, home decor, floral crafts, wedding ideas and outdoor living — free ideas for every season.</p>
+      </div>
+      <div>
+        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-6 text-gray-900">Categories</h4>
+        <ul class="space-y-3 text-xs font-medium text-gray-500 uppercase tracking-widest">
+          <li><a href="cat-lawn-garden.html" class="hover:text-green-700 transition">Lawn &amp; Garden</a></li>
+          <li><a href="cat-home-decor.html" class="hover:text-green-700 transition">Home Decor</a></li>
+          <li><a href="cat-wedding-decor.html" class="hover:text-green-700 transition">Wedding Decor</a></li>
+          <li><a href="cat-aesthetic.html" class="hover:text-green-700 transition">Aesthetic</a></li>
+          <li><a href="cat-plants.html" class="hover:text-green-700 transition">Plants</a></li>
+          <li><a href="cat-string-lights.html" class="hover:text-green-700 transition">Lightings</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-6 text-gray-900">Info</h4>
+        <ul class="space-y-3 text-xs font-medium text-gray-500 uppercase tracking-widest">
+          <li><a href="about.html" class="hover:text-green-700 transition">About Us</a></li>
+          <li><a href="digital-guides.html" class="hover:text-green-700 transition">Digital Guides</a></li>
+          <li><a href="privacy-policy.html" class="hover:text-green-700 transition">Privacy Policy</a></li>
+          <li><a href="disclaimer.html" class="hover:text-green-700 transition">Disclaimer</a></li>
+          <li><a href="contact.html" class="hover:text-green-700 transition font-bold text-green-900">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">
+      <p>© 2026 Gardenidea. All Rights Reserved.</p>
+      <div class="flex space-x-6">
+        <a href="https://pinterest.com/10MinuteFacts" target="_blank" rel="noopener" class="hover:text-green-800 transition">Pinterest</a>
+        <a href="about.html" class="hover:text-green-800 transition">About</a>
+        <a href="contact.html" class="hover:text-green-800 transition">Contact</a>
+        <a href="privacy-policy.html" class="hover:text-green-800 transition">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if(window.netlifyIdentity){window.netlifyIdentity.on("init",u=>{if(!u){window.netlifyIdentity.on("login",()=>{document.location.href="/admin/";});}});}
+window.addEventListener('scroll',()=>{const h=document.getElementById('gi-header');if(h)h.style.boxShadow=window.scrollY>20?'0 2px 12px rgba(0,0,0,.08)':'none';});
+const menuToggle=document.getElementById('menu-toggle');
+const mobileMenu=document.getElementById('mobile-menu');
+const iconOpen=document.getElementById('icon-open');
+const iconClose=document.getElementById('icon-close');
+if(menuToggle){menuToggle.addEventListener('click',()=>{const isHidden=mobileMenu.classList.toggle('hidden');iconOpen.classList.toggle('hidden',!isHidden);iconClose.classList.toggle('hidden',isHidden);});mobileMenu.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{mobileMenu.classList.add('hidden');iconOpen.classList.remove('hidden');iconClose.classList.add('hidden');});});}
+</script>
 </body>
 </html>

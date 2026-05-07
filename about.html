@@ -1,25 +1,166 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About Us | GardenBloom</title><link rel="stylesheet" href="style.css"><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"><style>.ph{background:var(--gd);color:#fff;padding:4rem 1.5rem;text-align:center;}.ph h1{font-family:var(--fh);font-size:2.3rem;margin-bottom:.75rem;}.ph p{opacity:.78;max-width:480px;margin:0 auto;font-size:.95rem;}.content{max-width:820px;margin:0 auto;padding:3rem 1.5rem;}.vals{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1rem;margin:1.75rem 0;}.val{background:var(--gp);border-radius:10px;padding:1.2rem;text-align:center;}.val .icon{font-size:1.75rem;margin-bottom:.5rem;}.val h4{font-family:var(--fh);font-size:.95rem;color:var(--gd);}h2{font-family:var(--fh);font-size:1.45rem;color:var(--gd);margin:2rem 0 .75rem;}p{font-size:.93rem;color:#333;margin-bottom:1rem;}a{color:var(--gm);}</style></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z94RGGLMY1"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-Z94RGGLMY1');</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About Gardenidea — garden inspiration, home decor, floral crafts, wedding ideas and outdoor living for every season.">
+<title>About Us | Gardenidea</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--primary-color:#2d4a22;--font-serif:'Playfair Display',serif;}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a1a;overflow-x:hidden;}
+h1,h2,h3,.serif{font-family:var(--font-serif);}
+.nav-link{transition:all .3s ease;position:relative;}
+.nav-link::after{content:'';position:absolute;width:0;height:2px;bottom:-2px;left:0;background:var(--primary-color);transition:width .3s ease;}
+.nav-link:hover::after{width:100%;}
+</style>
+</head>
 <body>
-<header><div class="hdr"><a href="index.html" class="logo">Garden<em>Bloom</em></a><nav><a href="index.html">Home</a><a href="index.html#articles">Articles</a><a href="digital-guides.html">Guides</a><a href="contact.html">Contact</a></nav></div></header>
-<div class="ph"><h1>About GardenBloom</h1><p>Helping you create beautiful gardens, floral crafts, and homes — one idea at a time.</p></div>
-<div class="content">
-  <h2>Our Story</h2>
-  <p>GardenBloom was built by a team of garden enthusiasts and floral craft lovers who believe that beautiful spaces shouldn't require a professional budget or years of experience. Whether you have a sprawling backyard or a tiny balcony, a love of ribbon crafts or a passion for cottage gardens, we're here to give you the ideas, information, and guides to make it happen.</p>
-  <p>We publish deeply informative content on lawn care, garden design, floral crafts, home decor, outdoor living, and seasonal wreaths. Our digital guides are designed for complete beginners — clear, illustrated, and actionable from day one.</p>
-  <div class="vals">
-    <div class="val"><div class="icon">🌿</div><h4>Practical & Informative</h4></div>
-    <div class="val"><div class="icon">💚</div><h4>Beginner-Friendly</h4></div>
-    <div class="val"><div class="icon">💰</div><h4>Budget Conscious</h4></div>
-    <div class="val"><div class="icon">🎨</div><h4>Beautiful Results</h4></div>
+
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100" id="gi-header">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <a href="index.html" class="text-2xl font-bold tracking-tighter serif text-green-900" style="font-family:'Playfair Display',serif;">
+      Garden<span class="text-green-600">idea</span>
+    </a>
+    <nav class="hidden lg:flex space-x-8 items-center font-medium uppercase text-[11px] tracking-[0.2em] text-gray-500">
+      <a href="index.html" class="nav-link hover:text-green-900 transition">Home</a>
+      <a href="cat-lawn-garden.html" class="nav-link hover:text-green-900 transition">Lawn &amp; Garden</a>
+      <a href="cat-home-decor.html" class="nav-link hover:text-green-900 transition">Home Decor</a>
+      <a href="cat-wedding-decor.html" class="nav-link hover:text-green-900 transition">Wedding Decor</a>
+      <a href="cat-backyard.html" class="nav-link hover:text-green-900 transition">Backyard</a>
+      <a href="cat-aesthetic.html" class="nav-link hover:text-green-900 transition">Aesthetic</a>
+      <a href="cat-plants.html" class="nav-link hover:text-green-900 transition">Plants</a>
+      <a href="cat-string-lights.html" class="nav-link hover:text-green-900 transition">Lightings</a>
+    </nav>
+    <div class="flex items-center space-x-2">
+      <button class="p-2 text-gray-600 hover:text-green-700 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </button>
+      <button id="menu-toggle" class="lg:hidden p-2 text-gray-700 hover:text-green-700 transition focus:outline-none">
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
   </div>
-  <h2>What We Cover</h2>
-  <p>Lawn & garden ideas, cottagecore and cottage garden design, ribbon rose crafts, DIY wedding bouquets, seasonal wreaths, farmhouse home decor, outdoor living spaces, string light ideas, and much more. Everything on this site is written to be genuinely useful — not just pretty.</p>
-  <h2>Our Digital Guides</h2>
-  <p>Our beginner-friendly PDF guides cover everything from ribbon rose techniques to full garden planning. Every guide is illustrated, clearly written, and designed for people starting from zero experience. Browse all guides at our <a href="digital-guides.html">Guides page</a>.</p>
-  <h2>Transparency</h2>
-  <p>GardenBloom earns revenue through display advertising (Ezoic) and digital guide sales. We never let advertising influence our editorial content. Our content is written to genuinely help our readers — always. See our <a href="disclaimer.html">Disclaimer</a> and <a href="privacy-policy.html">Privacy Policy</a> for full details.</p>
-  <h2>Contact</h2>
-  <p>Questions, feedback, or collaboration inquiries — we'd love to hear from you. Visit our <a href="contact.html">Contact page</a>.</p>
+  <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 shadow-lg">
+    <nav class="flex flex-col px-6 py-4 space-y-1">
+      <a href="index.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Home</a>
+      <a href="cat-lawn-garden.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Lawn &amp; Garden</a>
+      <a href="cat-home-decor.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Home Decor</a>
+      <a href="cat-wedding-decor.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Wedding Decor</a>
+      <a href="cat-backyard.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Backyard</a>
+      <a href="cat-aesthetic.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Aesthetic</a>
+      <a href="cat-plants.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Plants</a>
+      <a href="cat-string-lights.html" class="py-2 px-3 rounded text-sm font-medium uppercase tracking-widest text-gray-600 hover:text-green-800 hover:bg-green-50 transition">Lightings</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Page Hero -->
+<div class="bg-green-900 text-white py-16 px-6 text-center">
+  <p class="text-xs font-bold uppercase tracking-widest text-green-300 mb-3"><a href="index.html" class="hover:text-white transition">Home</a> › About</p>
+  <h1 class="text-4xl font-bold serif mb-3" style="font-family:'Playfair Display',serif;">About Gardenidea</h1>
+  <p class="text-green-200 max-w-md mx-auto text-sm leading-relaxed">Helping you create beautiful gardens, floral crafts, and homes — one idea at a time.</p>
 </div>
-<footer><div class="ft-main"><div class="ft-brand"><a href="index.html" class="ft-logo">Garden<em>Bloom</em></a><p>Lawn & garden inspiration, floral crafts, and beginner-friendly digital guides.</p></div><div class="ft-col"><h4>Articles</h4><a href="article-ribbon-roses.html">Ribbon Roses</a><a href="article-wedding-bouquet.html">Wedding Bouquet</a><a href="article-seasonal-wreaths.html">Seasonal Wreaths</a><a href="article-backyard-ideas.html">Backyard Ideas</a></div><div class="ft-col"><h4>Info</h4><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="disclaimer.html">Disclaimer</a></div></div><div class="ft-bot"><span>© 2025 GardenBloom</span><div class="ft-links"><a href="privacy-policy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></div></div></footer>
-</body></html>
+
+<!-- Content -->
+<main class="max-w-3xl mx-auto px-6 py-14">
+
+  <h2 class="text-2xl font-bold serif text-green-900 mb-4 mt-0" style="font-family:'Playfair Display',serif;">Our Story</h2>
+  <p class="text-gray-600 text-sm leading-relaxed mb-4">Gardenidea was built by a team of garden enthusiasts and floral craft lovers who believe that beautiful spaces shouldn't require a professional budget or years of experience. Whether you have a sprawling backyard or a tiny balcony, a love of ribbon crafts or a passion for cottage gardens, we're here to give you the ideas, information, and guides to make it happen.</p>
+  <p class="text-gray-600 text-sm leading-relaxed mb-8">We publish deeply informative content on lawn care, garden design, floral crafts, home decor, outdoor living, string lights, and seasonal inspiration. Our digital guides are designed for complete beginners — clear, illustrated, and actionable from day one.</p>
+
+  <!-- Values -->
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-8">
+    <div class="bg-green-50 rounded-xl p-5 text-center">
+      <div class="text-3xl mb-2">🌿</div>
+      <h4 class="font-bold text-green-900 text-sm serif" style="font-family:'Playfair Display',serif;">Practical &amp; Informative</h4>
+    </div>
+    <div class="bg-green-50 rounded-xl p-5 text-center">
+      <div class="text-3xl mb-2">💚</div>
+      <h4 class="font-bold text-green-900 text-sm serif" style="font-family:'Playfair Display',serif;">Beginner-Friendly</h4>
+    </div>
+    <div class="bg-green-50 rounded-xl p-5 text-center">
+      <div class="text-3xl mb-2">💰</div>
+      <h4 class="font-bold text-green-900 text-sm serif" style="font-family:'Playfair Display',serif;">Budget Conscious</h4>
+    </div>
+    <div class="bg-green-50 rounded-xl p-5 text-center">
+      <div class="text-3xl mb-2">🎨</div>
+      <h4 class="font-bold text-green-900 text-sm serif" style="font-family:'Playfair Display',serif;">Beautiful Results</h4>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-bold serif text-green-900 mb-4 mt-10" style="font-family:'Playfair Display',serif;">What We Cover</h2>
+  <p class="text-gray-600 text-sm leading-relaxed mb-8">Lawn &amp; garden ideas, cottagecore and cottage garden design, ribbon rose crafts, DIY wedding bouquets, seasonal wreaths, farmhouse home decor, outdoor living spaces, string light ideas, backyard transformations, and much more. Everything on this site is written to be genuinely useful — not just pretty.</p>
+
+  <h2 class="text-2xl font-bold serif text-green-900 mb-4" style="font-family:'Playfair Display',serif;">Our Digital Guides</h2>
+  <p class="text-gray-600 text-sm leading-relaxed mb-8">Our beginner-friendly PDF guides cover everything from ribbon rose techniques to full garden planning. Every guide is illustrated, clearly written, and designed for people starting from zero experience. Browse all guides at our <a href="digital-guides.html" class="text-green-700 hover:underline font-medium">Guides page</a>.</p>
+
+  <h2 class="text-2xl font-bold serif text-green-900 mb-4" style="font-family:'Playfair Display',serif;">Transparency</h2>
+  <p class="text-gray-600 text-sm leading-relaxed mb-8">Gardenidea earns revenue through display advertising (Ezoic) and digital guide sales. We never let advertising influence our editorial content. Our content is written to genuinely help our readers — always. See our <a href="disclaimer.html" class="text-green-700 hover:underline font-medium">Disclaimer</a> and <a href="privacy-policy.html" class="text-green-700 hover:underline font-medium">Privacy Policy</a> for full details.</p>
+
+  <h2 class="text-2xl font-bold serif text-green-900 mb-4" style="font-family:'Playfair Display',serif;">Contact</h2>
+  <p class="text-gray-600 text-sm leading-relaxed">Questions, feedback, or collaboration inquiries — we'd love to hear from you. Visit our <a href="contact.html" class="text-green-700 hover:underline font-medium">Contact page</a>.</p>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-gray-100 pt-16 pb-10">
+  <div class="container mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div class="col-span-1 md:col-span-2">
+        <a href="index.html" class="text-2xl font-bold serif text-green-900 mb-4 block" style="font-family:'Playfair Display',serif;">Gardenidea</a>
+        <p class="text-gray-500 max-w-sm leading-relaxed text-sm">Garden inspiration, home decor, floral crafts, wedding ideas and outdoor living — free ideas for every season.</p>
+      </div>
+      <div>
+        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-6 text-gray-900">Categories</h4>
+        <ul class="space-y-3 text-xs font-medium text-gray-500 uppercase tracking-widest">
+          <li><a href="cat-lawn-garden.html" class="hover:text-green-700 transition">Lawn &amp; Garden</a></li>
+          <li><a href="cat-home-decor.html" class="hover:text-green-700 transition">Home Decor</a></li>
+          <li><a href="cat-wedding-decor.html" class="hover:text-green-700 transition">Wedding Decor</a></li>
+          <li><a href="cat-aesthetic.html" class="hover:text-green-700 transition">Aesthetic</a></li>
+          <li><a href="cat-plants.html" class="hover:text-green-700 transition">Plants</a></li>
+          <li><a href="cat-string-lights.html" class="hover:text-green-700 transition">Lightings</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-black uppercase text-[10px] tracking-[0.2em] mb-6 text-gray-900">Info</h4>
+        <ul class="space-y-3 text-xs font-medium text-gray-500 uppercase tracking-widest">
+          <li><a href="about.html" class="hover:text-green-700 transition font-bold text-green-900">About Us</a></li>
+          <li><a href="digital-guides.html" class="hover:text-green-700 transition">Digital Guides</a></li>
+          <li><a href="privacy-policy.html" class="hover:text-green-700 transition">Privacy Policy</a></li>
+          <li><a href="disclaimer.html" class="hover:text-green-700 transition">Disclaimer</a></li>
+          <li><a href="contact.html" class="hover:text-green-700 transition">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-50 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-400 text-[10px] font-bold uppercase tracking-widest">
+      <p>© 2026 Gardenidea. All Rights Reserved.</p>
+      <div class="flex space-x-6">
+        <a href="https://pinterest.com/10MinuteFacts" target="_blank" rel="noopener" class="hover:text-green-800 transition">Pinterest</a>
+        <a href="about.html" class="hover:text-green-800 transition">About</a>
+        <a href="contact.html" class="hover:text-green-800 transition">Contact</a>
+        <a href="privacy-policy.html" class="hover:text-green-800 transition">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+if(window.netlifyIdentity){window.netlifyIdentity.on("init",u=>{if(!u){window.netlifyIdentity.on("login",()=>{document.location.href="/admin/";});}});}
+window.addEventListener('scroll',()=>{const h=document.getElementById('gi-header');if(h)h.style.boxShadow=window.scrollY>20?'0 2px 12px rgba(0,0,0,.08)':'none';});
+const menuToggle=document.getElementById('menu-toggle');
+const mobileMenu=document.getElementById('mobile-menu');
+const iconOpen=document.getElementById('icon-open');
+const iconClose=document.getElementById('icon-close');
+if(menuToggle){menuToggle.addEventListener('click',()=>{const isHidden=mobileMenu.classList.toggle('hidden');iconOpen.classList.toggle('hidden',!isHidden);iconClose.classList.toggle('hidden',isHidden);});mobileMenu.querySelectorAll('a').forEach(link=>{link.addEventListener('click',()=>{mobileMenu.classList.add('hidden');iconOpen.classList.remove('hidden');iconClose.classList.add('hidden');});});}
+</script>
+</body>
+</html>
